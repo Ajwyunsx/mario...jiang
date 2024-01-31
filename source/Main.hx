@@ -59,7 +59,7 @@ class Main extends Sprite {
 		"ihy_cutscene.mp4"	
 	];
 	
-	static final videos:Array<String> = [
+	static final otherVideos:Array<String> = [
 		"garlic.mp4",
 		"nate.mp4",
 		"i hate this",
