@@ -161,7 +161,7 @@ class PauseSubState extends MusicBeatSubstate
 		}
 		var muestralol:Array<String> = ['El pepe', 'ete sech'];
 
-		muestralol = CoolUtil.coolTextFile(SUtil.getPath() + txtdesc);
+		muestralol = CoolUtil.coolTextFile(txtdesc);
 
 		if (PlayState.isStoryMode)
 		{
