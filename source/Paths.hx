@@ -202,6 +202,11 @@ class Paths
 	{
 		return 'assets/videos/$key.$VIDEO_EXT';
 	}
+	
+	static public function trueOtherVideo(key:String)
+	{
+		return 'assets/videos/secrets/$key.$VIDEO_EXT';
+	}
 
 	static public function sound(key:String, ?library:String):Sound
 	{
