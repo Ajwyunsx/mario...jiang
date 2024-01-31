@@ -1077,6 +1077,7 @@ class FunkinLua
 		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String)
 		{
 			#if VIDEOS_ALLOWED
+			/*
 			if (FileSystem.exists(Paths.modsVideo(videoFile)))
 			{
 				lePlayState.startVideo(videoFile);
@@ -1084,7 +1085,7 @@ class FunkinLua
 			else
 			{
 				luaTrace('Video file not found: ' + videoFile);
-			}
+			}*/
 			#else
 			if (lePlayState.endingSong)
 			{
