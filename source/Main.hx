@@ -67,7 +67,7 @@ class Main extends Sprite {
 	public function setupGame():Void {
                 Lib.application.window.onClose.add(PlayState.onWinClose);
 		
-		SUtil.doTheCheck();
+		
 		
 		#if !debug
 		initialState = TitleState;
