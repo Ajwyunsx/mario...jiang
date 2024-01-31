@@ -41,30 +41,30 @@ class Main extends Sprite {
 	public static var forceNoVramSprites:Bool = #if android false #else true #end;
 	
 	static final videos:Array<String> = [
-		"abandoncut.mp4",
-		"continue.mp4",
-		"cutscene2.mp4",
-		"cutscene3.mp4",
-		"demise_cutscene.mp4",
-		"demise_cutscene_SOUND.mp4",
-		"dsintro.mp4",
-		"ihy_cutscene.mp4",
-		"abandoncut.mp4",
-		"continue.mp4",
-		"cutscene2.mp4",
-		"cutscene3.mp4",
-		"demise_cutscene.mp4",
-		"demise_cutscene_SOUND.mp4",
-		"dsintro.mp4",
-		"ihy_cutscene.mp4"	
+		"abandoncut",
+		"continue",
+		"cutscene2",
+		"cutscene3",
+		"demise_cutscene",
+		"demise_cutscene_SOUND",
+		"dsintro",
+		"ihy_cutscene",
+		"abandoncut",
+		"continue",
+		"cutscene2",
+		"cutscene3",
+		"demise_cutscene",
+		"demise_cutscene_SOUND",
+		"dsintro",
+		"ihy_cutscene"	
 	];
 	
 	static final otherVideos:Array<String> = [
-		"garlic.mp4",
-		"nate.mp4",
+		"garlic",
+		"nate",
 		"i hate this",
 		"V3",
-		"scrubb.mp4"
+		"scrubb"
 		
 	];
 
