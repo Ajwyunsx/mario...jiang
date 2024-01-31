@@ -93,7 +93,7 @@ class EditorPlayState extends MusicBeatState
 		generateSong(PlayState.SONG.song);
 		#if LUA_ALLOWED
 		for (notetype in noteTypeMap.keys()) {
-			var luaToLoad:String = Paths.modFolders('custom_notetypes/' + notetype + '.lua');
+			var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
 			if(sys.FileSystem.exists(luaToLoad)) {
 				var lua:editors.EditorLua = new editors.EditorLua(luaToLoad);
 				new FlxTimer().start(0.1, function (tmr:FlxTimer) {

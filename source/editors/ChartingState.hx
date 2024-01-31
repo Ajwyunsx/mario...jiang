@@ -417,7 +417,7 @@ class ChartingState extends MusicBeatState
 			var songName:String = Paths.formatToSongPath(_song.song);
 			var file:String = Paths.json('songData/' + songName + '/events');
 			#if sys
-			if (#if MODS_ALLOWED FileSystem.exists(Paths.modsJson(songName + '/events')) || #end FileSystem.exists(file))
+			if (#if MODS_ALLOWED FileSystem.exists(Paths.getPreloadPathJson(songName + '/events')) || #end FileSystem.exists(file))
 			#else
 			if (OpenFlAssets.exists(file))
 			#end
@@ -470,7 +470,7 @@ class ChartingState extends MusicBeatState
 		stepperSpeed.name = 'song_speed';
 
 		#if MODS_ALLOWED
-		var directories:Array<String> = [Paths.mods('characters/'), Paths.mods(Paths.currentModDirectory + '/characters/'), Paths.getPreloadPath('characters/')];
+		var directories:Array<String> = [Paths.getPreloadPath('characters/'), Paths.getPreloadPath(Paths.currentModDirectory + '/characters/'), Paths.getPreloadPath('characters/')];
 		#else
 		var directories:Array<String> = [Paths.getPreloadPath('characters/')];
 		#end
@@ -524,7 +524,7 @@ class ChartingState extends MusicBeatState
 		blockPressWhileScrolling.push(player2DropDown);
 
 		#if MODS_ALLOWED
-		var directories:Array<String> = [Paths.mods('stages/'), Paths.mods(Paths.currentModDirectory + '/stages/'), Paths.getPreloadPath('stages/')];
+		var directories:Array<String> = [Paths.getPreloadPath('stages/'), Paths.getPreloadPath(Paths.currentModDirectory + '/stages/'), Paths.getPreloadPath('stages/')];
 		#else
 		var directories:Array<String> = [Paths.getPreloadPath('stages/')];
 		#end
@@ -769,7 +769,7 @@ class ChartingState extends MusicBeatState
 		}
 
 		#if LUA_ALLOWED
-		var directories:Array<String> = [Paths.mods('custom_notetypes/'), Paths.mods(Paths.currentModDirectory + '/custom_notetypes/')];
+		var directories:Array<String> = [Paths.getPreloadPath('custom_notetypes/'), Paths.getPreloadPath(Paths.currentModDirectory + '/custom_notetypes/')];
 		for (i in 0...directories.length) {
 			var directory:String =  directories[i];
 			if(FileSystem.exists(directory)) {
@@ -822,7 +822,7 @@ class ChartingState extends MusicBeatState
 
 		#if LUA_ALLOWED
 		var eventPushedMap:Map<String, Bool> = new Map<String, Bool>();
-		var directories:Array<String> = [Paths.mods('custom_events/'), Paths.mods(Paths.currentModDirectory + '/custom_events/')];
+		var directories:Array<String> = [Paths.getPreloadPath('custom_events/')];
 		for (i in 0...directories.length) {
 			var directory:String =  directories[i];
 			if(FileSystem.exists(directory)) {
