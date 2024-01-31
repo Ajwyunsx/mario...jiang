@@ -47,7 +47,11 @@ class Main extends Sprite {
 	public function new() {
 		super();
 
-		SUtil.gameCrashCheck();
+		#if mobile
+		Generic.initCrashHandler();
+		Generic.mode = ROOTDATA;
+		#end
+		
 		if (stage != null) {
 			init();
 		}
@@ -65,9 +69,22 @@ class Main extends Sprite {
 	}
 
 	public function setupGame():Void {
-                Lib.application.window.onClose.add(PlayState.onWinClose);
+        Lib.application.window.onClose.add(PlayState.onWinClose);
 		
-		
+		#if mobile
+
+		if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
+			FileSystem.createDirectory(Generic.returnPath() + 'assets');
+		}
+
+		if (!FileSystem.exists(Generic.returnPath() + 'assets/videos')) {
+			FileSystem.createDirectory(Generic.returnPath() + 'assets/videos');
+		}
+
+		for (video in videos) {
+			Generic.copyContent(Paths.truevideo(video), Paths.truevideo(video));
+		}
+	    #end
 		
 		#if !debug
 		initialState = TitleState;
