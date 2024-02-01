@@ -4449,7 +4449,7 @@ class PlayState extends MusicBeatState
 		var luaFile:String = Paths.getPreloadPath('stages/' + curStage + '.lua');
 		if (Assets.exists(luaFile))
 		{
-			luaFile = Assets.getPath(luaFile);
+			luaFile = OpenFlAssets.getPath(luaFile);
 			doPush = true;
 		}		
 
@@ -4931,8 +4931,8 @@ class PlayState extends MusicBeatState
 			var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
 			if (Assets.exists(luaToLoad))
 			{
-			    luaToLoad = Assets.getPath(Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua'));
-				luaArray.push(new FunkinLua(Assets.getPath(luaToLoad)));
+			    luaToLoad = OpenFlAssets.getPath(Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua'));
+				luaArray.push(new FunkinLua(OpenFlAssets.getPath(luaToLoad)));
 			}
 		}
 		for (event in eventPushedMap.keys())
@@ -4940,8 +4940,8 @@ class PlayState extends MusicBeatState
 			var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
 			if (Assets.exists(luaToLoad))
 			{
-			    luaToLoad = Assets.getPath(Paths.getPreloadPath('custom_events/' + event + '.lua'));
-				luaArray.push(new FunkinLua(Assets.getPath(luaToLoad)));
+			    luaToLoad = OpenFlAssets.getPath(Paths.getPreloadPath('custom_events/' + event + '.lua'));
+				luaArray.push(new FunkinLua(OpenFlAssets.getPath(luaToLoad)));
 			}
 		}
 		#end
@@ -5741,7 +5741,7 @@ class PlayState extends MusicBeatState
 			luaFile = Paths.getPreloadPath(luaFile);
 			if (Assets.exists(luaFile))
 			{
-			    luaFile = Assets.getPath(luaFile);
+			    luaFile = OpenFlAssets.getPath(luaFile);
 				doPush = true;
 			}
 		}
@@ -6103,7 +6103,7 @@ class PlayState extends MusicBeatState
 		var luaFile:String = Paths.getPreloadPath('characters/' + name + '.lua');
 		if (Assets.exists(luaFile))
 		{
-			luaFile = Assets.getPath(Paths.getPreloadPath('characters/' + name + '.lua'));
+			luaFile = OpenFlAssets.getPath(Paths.getPreloadPath('characters/' + name + '.lua'));
 			doPush = true;
 		}
 
