@@ -631,6 +631,11 @@ class GameOverSubstate extends MusicBeatSubstate
 			PlayState.deathCounter = 0;
 			PlayState.seenCutscene = false;
 
+			if (PlayState.curStage == 'turmoilsweep' || PlayState.curStage == 'castlestar' || PlayState.curStage == 'exeport' || PlayState.curStage == 'piracy')
+			{
+			PlayState.qqqeb = false;
+			}
+			
 			if (PlayState.isStoryMode)
 			{
 				MusicBeatState.switchState(new StoryMenuState());
