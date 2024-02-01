@@ -4931,8 +4931,8 @@ class PlayState extends MusicBeatState
 			var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
 			if (OpenFlAssets.exists(luaToLoad))
 			{
-			    luaToLoad = Asset2File.getPath(Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua'));
-				luaArray.push(new FunkinLua(luaToLoad));
+			    luaToLoad = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad), false));
 			}
 		}
 		for (event in eventPushedMap.keys())
@@ -4940,8 +4940,8 @@ class PlayState extends MusicBeatState
 			var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
 			if (OpenFlAssets.exists(luaToLoad))
 			{
-			    luaToLoad = Asset2File.getPath(Paths.getPreloadPath('custom_events/' + event + '.lua'));
-				luaArray.push(new FunkinLua(luaToLoad));
+			    luaToLoad = Paths.getPreloadPath('custom_events/' + event + '.lua');
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad), false));
 			}
 		}
 		#end
@@ -5741,13 +5741,13 @@ class PlayState extends MusicBeatState
 			luaFile = Paths.getPreloadPath(luaFile);
 			if (OpenFlAssets.exists(luaFile))
 			{
-			    luaFile = Asset2File.getPath(luaFile);
+			    luaFile = Paths.getPreloadPath(luaFile);
 				doPush = true;
 			}
 		}
 
 		if (doPush)
-			luaArray.push(new FunkinLua(luaFile));
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile), false));
 		#end
 
 		var daSong:String = Paths.formatToSongPath(curSong);
@@ -6103,7 +6103,7 @@ class PlayState extends MusicBeatState
 		var luaFile:String = Paths.getPreloadPath('characters/' + name + '.lua');
 		if (OpenFlAssets.exists(luaFile))
 		{
-			luaFile = Asset2File.getPath(Paths.getPreloadPath('characters/' + name + '.lua'));
+			luaFile = Paths.getPreloadPath('characters/' + name + '.lua');
 			doPush = true;
 		}
 
@@ -6114,7 +6114,7 @@ class PlayState extends MusicBeatState
 				if (Reflect.getProperty(lua, 'scriptName') == luaFile)
 					return;
 			}
-			luaArray.push(new FunkinLua(luaFile));
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile), false));
 		}
 		#end
 	}
