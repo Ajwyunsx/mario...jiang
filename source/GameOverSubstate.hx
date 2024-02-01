@@ -49,7 +49,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	var lePlayState:PlayState;
 
 	var timers:Array<FlxTimer> = [];
-	var voiceline:FlxSound;
+	var voiceline:FlxSound = null;
 
 	public static var characterName:String = 'bf';
 	public static var deathSoundName:String = 'fnf_loss_sfx';
@@ -82,9 +82,11 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		Conductor.songPosition = 0;
 		Conductor.changeBPM(50);
-        try{
-		    voiceline = new FlxSound().loadEmbedded(Paths.sound(PlayState.curStage + '/line' + FlxG.random.int(1, vaCount)));
-        }
+		
+		var choose:Int = FlxG.random.int(1, vaCount);
+        if (Assets.exists(Paths.sound(PlayState.curStage + '/line' + choose)))
+		voiceline = new FlxSound().loadEmbedded(Paths.sound(PlayState.curStage + '/line' + choose));
+
 		bf = new Boyfriend(x, y, characterName);
 		add(bf);
 
@@ -854,6 +856,8 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	function playVoiceline(time:Float = 2.5):Void
 	{
+	    if (voiceline == null) return;
+	    
 		if (hasVA)
 			{
 				trace('hasVA is ' + hasVA + ', playing voiceline');
@@ -861,14 +865,13 @@ class GameOverSubstate extends MusicBeatSubstate
 					{
 						var startingVolume:Float = FlxG.sound.music.volume;
 						FlxTween.tween(FlxG.sound.music, {volume: startingVolume / 2}, 1, {onComplete: function(twn:FlxTween)
-						{   try{
+						{
 							voiceline.volume = 0.7;
 							voiceline.play();
 							// var voiceline = new FlxSound().Paths.sound(PlayState.curStage + '/line' + FlxG.random.int(1, vaCount));
 							timers.push(new FlxTimer().start(voiceline.length / 1000, function(tmr:FlxTimer){
 								FlxTween.tween(FlxG.sound.music, {volume: startingVolume}, 1);
 							}));
-							}
 						}});
 					}));
 			}
@@ -991,7 +994,7 @@ class GameOverSubstate extends MusicBeatSubstate
 				else
 					FlxTween.tween(FlxG.sound.music, {volume: 0}, 2.5);
 				if(hasVA)
-					try{ voiceline.stop(); }
+					if (voiceline != null) voiceline.stop();
 				FlxG.sound.play(Paths.music(endSoundName));
 				if(PlayState.curStage == 'landstage')
 					FlxG.sound.play(Paths.music('GBchuckle'));
