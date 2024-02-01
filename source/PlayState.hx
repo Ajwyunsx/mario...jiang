@@ -14401,6 +14401,11 @@ class PlayState extends MusicBeatState
 					Main.fpsVar.visible = true;
 			}
 
+			if (curStage == 'turmoilsweep' || curStage == 'castlestar' || curStage == 'exeport')
+			{
+			qqqeb = false;
+			}
+			
 			if (isStoryMode)
 			{
 				campaignScore += songScore;
