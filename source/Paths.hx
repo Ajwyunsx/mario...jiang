@@ -194,17 +194,12 @@ class Paths
 	static public function video(key:String)
 	{
 		
-		return 'assets/videos/$key.$VIDEO_EXT';
+		return Asset2File.getPath('assets/videos/$key.$VIDEO_EXT');
 	}
 	
 	static public function truevideo(key:String)
 	{
-		return 'assets/videos/$key.$VIDEO_EXT';
-	}
-	
-	static public function trueOtherVideo(key:String)
-	{
-		return 'assets/videos/secrets/$key.$VIDEO_EXT';
+		return Asset2File.getPath('assets/videos/$key.$VIDEO_EXT');
 	}
 
 	static public function sound(key:String, ?library:String):Sound
