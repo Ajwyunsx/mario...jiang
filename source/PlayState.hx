@@ -5733,13 +5733,16 @@ class PlayState extends MusicBeatState
 			switch (daSong)
 			{
 				case 'its-a-me':
-					startVideo('Itsame_cutscene');
+					cutVid.playVideo(Asset2File.getPath("assets/videos/Itsame_cutscene.mp4"));
+					startVideo();
 
 				case 'starman-slaughter' | 'starman slaughter':
-					startVideo('ss_cutscene');
+					cutVid.playVideo(Asset2File.getPath("assets/videos/ss_cutscene.mp4"));
+					startVideo();
 
 				case 'golden-land':
-					startVideo('cutscene2');
+					cutVid.playVideo(Asset2File.getPath("assets/videos/cutscene2.mp4"));
+					startVideo();
 
 				default:
 					startCountdown();
@@ -5750,15 +5753,20 @@ class PlayState extends MusicBeatState
 			seenCutscene = true;
 			switch(daSong){
 			case 'overdue':
-				startVideo('overdue_cutscn');				
+				cutVid.playVideo(Asset2File.getPath("assets/videos/overdue_cutscn.mp4"));
+				startVideo();				
 			case 'demise':
-				startVideo('demise_cutscene');
+				cutVid.playVideo(Asset2File.getPath("assets/videos/demise_cutscene.mp4"));
+				startVideo();
 			case 'i-hate-you':
-				startVideo('ihy_cutscene');
+				cutVid.playVideo(Asset2File.getPath("assets/videos/ihy_cutscene.mp4"));
+				startVideo();
 			case 'promotion':
-				startVideo('promocut');
+				cutVid.playVideo(Asset2File.getPath("assets/videos/promocut.mp4"));
+				startVideo();
 			case 'abandoned':
-				startVideo('abandoncut');
+				cutVid.playVideo(Asset2File.getPath("assets/videos/abandoncut.mp4"));
+				startVideo();
 			default:
 				startCountdown();
 				seenCutscene = false;
@@ -6087,7 +6095,7 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
-	public function startVideo(name:String):Void
+	public function startVideo():Void
 	{
 			var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 			bg.cameras = [camOther];
@@ -6101,7 +6109,6 @@ class PlayState extends MusicBeatState
 
 			inCutscene = true;
 			cutVid = new VideoHandler();
-			cutVid.playVideo(Asset2File.getPath(Paths.video(name)));
 			cancelFadeTween();
 			CustomFadeTransition.nextCamera = null;
 
