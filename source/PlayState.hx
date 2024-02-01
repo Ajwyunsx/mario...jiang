@@ -4441,7 +4441,18 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
-		
+		#if LUA_ALLOWED
+		var doPush:Bool = false;
+		var luaFile:String = Paths.getPreloadPath('stages/' + curStage + '.lua');
+		if (Assets.exists(luaFile))
+		{
+			luaFile = Assets.getText(luaFile);
+			doPush = true;
+		}		
+
+		if (doPush)
+			luaArray.push(new FunkinLua(luaFile));
+		#end
 
 
 		var gfVersion:String = SONG.player3;
@@ -4915,20 +4926,23 @@ class PlayState extends MusicBeatState
 		for (notetype in noteTypeMap.keys())
 		{
 			var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
-			if (FileSystem.exists(luaToLoad))
+			if (Assets.exists(luaToLoad))
 			{
-				luaArray.push(new FunkinLua(luaToLoad));
+			    luaToLoad = Assets.getText(Paths.getPreloadPath('custom_notetypes/' + event + '.lua'));
+				luaArray.push(new FunkinLua(Assets.getText(luaToLoad)));
 			}
 		}
 		for (event in eventPushedMap.keys())
 		{
 			var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
-			if (FileSystem.exists(luaToLoad))
+			if (Assets.exists(luaToLoad))
 			{
-				luaArray.push(new FunkinLua(luaToLoad));
+			    luaToLoad = Assets.getText(Paths.getPreloadPath('custom_events/' + event + '.lua'));
+				luaArray.push(new FunkinLua(Assets.getText(luaToLoad)));
 			}
 		}
 		#end
+		
 		noteTypeMap.clear();
 		noteTypeMap = null;
 		eventPushedMap.clear();
@@ -5715,8 +5729,9 @@ class PlayState extends MusicBeatState
 		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
 		{
 			luaFile = Paths.getPreloadPath(luaFile);
-			if (FileSystem.exists(luaFile))
+			if (Assets.exists(luaFile))
 			{
+			    luaFile = Assets.getText(Paths.getPreloadPath(luaFile))
 				doPush = true;
 			}
 		}
@@ -6073,7 +6088,25 @@ class PlayState extends MusicBeatState
 
 	function startCharacterLua(name:String)
 	{
-		
+		#if LUA_ALLOWED
+		var doPush:Bool = false;
+		var luaFile:String = Paths.getPreloadPath('characters/' + name + '.lua');
+		if (Assets.exists(luaFile)
+		{
+			luaFile = Assets.getText(Paths.getPreloadPath('characters/' + name + '.lua'));
+			doPush = true;
+		}
+
+		if (doPush)
+		{
+			for (lua in luaArray)
+			{
+				if (Reflect.getProperty(lua, 'scriptName') == luaFile)
+					return;
+			}
+			luaArray.push(new FunkinLua(luaFile));
+		}
+		#end
 	}
 
 	function startCharacterPos(char:Character, ?gfCheck:Bool = false)
