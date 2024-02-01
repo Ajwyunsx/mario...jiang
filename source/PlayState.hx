@@ -4133,7 +4133,6 @@ class PlayState extends MusicBeatState
 				noCount = true;
 				BF_CAM_EXTEND = 0;
 				CoolUtil.precacheSound('lightOn');
-				qqqeb1 = true;
                                 gfGroup.visible = false;
 				boyfriendGroup.scrollFactor.set(0.1, 0.1);
 
@@ -4932,7 +4931,7 @@ class PlayState extends MusicBeatState
 			if (OpenFlAssets.exists(luaToLoad))
 			{
 			    luaToLoad = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
-				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad), false));
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
 			}
 		}
 		for (event in eventPushedMap.keys())
@@ -4941,7 +4940,7 @@ class PlayState extends MusicBeatState
 			if (OpenFlAssets.exists(luaToLoad))
 			{
 			    luaToLoad = Paths.getPreloadPath('custom_events/' + event + '.lua');
-				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad), false));
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
 			}
 		}
 		#end
@@ -5747,7 +5746,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if (doPush)
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile), false));
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
 		#end
 
 		var daSong:String = Paths.formatToSongPath(curSong);
@@ -6114,7 +6113,7 @@ class PlayState extends MusicBeatState
 				if (Reflect.getProperty(lua, 'scriptName') == luaFile)
 					return;
 			}
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile), false));
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
 		}
 		#end
 	}
