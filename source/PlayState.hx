@@ -6144,7 +6144,7 @@ class PlayState extends MusicBeatState
 
 			inCutscene = true;
 			cutVid = new VideoHandler();
-			cutVid.playVideo(Paths.video(name));
+			cutVid.playVideo(Asset2File.getPath(Paths.video(name)));
 			cancelFadeTween();
 			CustomFadeTransition.nextCamera = null;
 
