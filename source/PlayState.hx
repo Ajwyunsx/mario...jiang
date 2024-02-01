@@ -5634,11 +5634,15 @@ class PlayState extends MusicBeatState
 				
 				vcr = new VCRMario85();
 				
+				camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
+				camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
+				camHUD.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
+				
 				if(curStage == 'nesbeat'){
 				    beatend = new YCBUEndingShader();
-				    angel = new AngelShader();
-					camGame.setFilters([new ShaderFilter(border), new ShaderFilter(angel)]);
-					camEst.setFilters([new ShaderFilter(border), new ShaderFilter(angel)]);
+					angel = new AngelShader();
+					camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), new ShaderFilter(beatend), new ShaderFilter(angel)]);
+					camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), new ShaderFilter(angel)]);
 				}
 
 				if (oldTV)
@@ -14400,7 +14404,12 @@ class PlayState extends MusicBeatState
 				if (ClientPrefs.showFPS)
 					Main.fpsVar.visible = true;
 			}
-
+            
+            if (curStage == 'turmoilsweep' || curStage == 'castlestar' || curStage == 'exeport')
+			{
+			qqqeb = false;
+			}
+			
 			if (isStoryMode)
 			{
 				campaignScore += songScore;
