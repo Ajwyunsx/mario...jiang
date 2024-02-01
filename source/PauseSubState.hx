@@ -347,7 +347,7 @@ class PauseSubState extends MusicBeatSubstate
 		changeSelection();
 
 		#if android
-		addVirtualPad(FULL, A_B);
+		addVirtualPad(FULL, A);
 		addPadCamera();
 		#end
 		
@@ -562,6 +562,10 @@ class PauseSubState extends MusicBeatSubstate
 							PlayState.seenCutscene = false;
 							CustomFadeTransition.nextCamera = transCamera;
 							ClientPrefs.saveSettings();
+							if (PlayState.curStage == 'turmoilsweep' || PlayState.curStage == 'castlestar' || PlayState.curStage == 'exeport' || PlayState.curStage == 'piracy')
+			                                {
+			                                PlayState.qqqeb = false;
+			                                }              
 							PlayState.virtualmode = false;
 							if (PlayState.isWarp)
 							{
