@@ -1076,7 +1076,7 @@ class FunkinLua
 		});
 		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String)
 		{
-			#if VIDEOS_ALLOWED
+			/*#if VIDEOS_ALLOWED
 			
 			if (FileSystem.exists(Paths.video(videoFile)))
 			{
@@ -1095,7 +1095,7 @@ class FunkinLua
 			{
 				lePlayState.startCountdown();
 			}
-			#end
+			#end  */
 		});
 
 		Lua_helper.add_callback(lua, "playMusic", function(sound:String, volume:Float = 1, loop:Bool = false)
