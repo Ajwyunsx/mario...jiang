@@ -104,8 +104,6 @@ class WorldState extends MusicBeatState
 		camWorld = new FlxCamera();
 		FlxG.cameras.reset(camWorld);
 		FlxCamera.defaultCameras = [camWorld];
-
-		PlayState.qqqeb = false;
 		
 		blackBG = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 		add(blackBG);
