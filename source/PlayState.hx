@@ -4443,9 +4443,6 @@ class PlayState extends MusicBeatState
 
 		
 
-		if (doPush)
-			luaArray.push(new FunkinLua(luaFile));
-		#end
 
 		var gfVersion:String = SONG.player3;
 		if (gfVersion == null || gfVersion.length < 1)
