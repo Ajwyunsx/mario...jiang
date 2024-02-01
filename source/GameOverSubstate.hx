@@ -85,8 +85,8 @@ class GameOverSubstate extends MusicBeatSubstate
 		Conductor.songPosition = 0;
 		Conductor.changeBPM(50);
 		
-		var choose:Int = FlxG.random.int(1, vaCount);
-        if (Assets.exists(Paths.sound(PlayState.curStage + '/line' + choose)))
+		var choose:Int = FlxG.random.int(1, vaCount);		
+        if (Assets.exists(Paths.getPreloadPath(PlayState.curStage + '/line' + choose + '.ogg')))
 		voiceline = new FlxSound().loadEmbedded(Paths.sound(PlayState.curStage + '/line' + choose));
 
 		bf = new Boyfriend(x, y, characterName);
