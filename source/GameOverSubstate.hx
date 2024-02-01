@@ -16,6 +16,8 @@ import flixel.util.FlxColor;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 
+import lime.utils.Assets;
+
 class GameOverSubstate extends MusicBeatSubstate
 {
 	var bf:Boyfriend;

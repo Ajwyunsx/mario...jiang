@@ -4931,7 +4931,7 @@ class PlayState extends MusicBeatState
 			var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
 			if (Assets.exists(luaToLoad))
 			{
-			    luaToLoad = Assets.getText(Paths.getPreloadPath('custom_notetypes/' + event + '.lua'));
+			    luaToLoad = Assets.getText(Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua'));
 				luaArray.push(new FunkinLua(Assets.getText(luaToLoad)));
 			}
 		}
