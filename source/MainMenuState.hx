@@ -1104,5 +1104,5 @@ class MainMenuState extends MusicBeatState {
 		penkStage++;
 	}
     }
-}
+
 
