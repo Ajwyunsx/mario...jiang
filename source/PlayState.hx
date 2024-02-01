@@ -779,7 +779,8 @@ class PlayState extends MusicBeatState
 	private var luaDebugGroup:FlxTypedGroup<DebugLuaText>;
 
 	public var introSoundsSuffix:String = '';
-
+    
+    public var vcr:VCRMario85;
 	public var staticShader:TVStatic;
 
 	public var lavaEmitter:FlxTypedEmitter<LavaParticle>;
@@ -793,7 +794,9 @@ class PlayState extends MusicBeatState
 	var oldTV:Bool;
 	public var oldFX:OldTVShader;
 	public var contrastFX:BrightnessContrastShader;
-        var angel:AngelShader;
+	var beatend:YCBUEndingShader;
+	var angel:AngelShader;
+
 	var dupe:CamDupeShader;
 	var dupeTimer:Int = 0;
 	var dupeMax:Int = 4;
@@ -5629,8 +5632,11 @@ class PlayState extends MusicBeatState
 				camEst.setFilters([new ShaderFilter(border)]);
 				camHUD.setFilters([new ShaderFilter(border)]);
 				
+				vcr = new VCRMario85();
+				
 				if(curStage == 'nesbeat'){
-				        angel = new AngelShader();
+				    beatend = new YCBUEndingShader();
+				    angel = new AngelShader();
 					camGame.setFilters([new ShaderFilter(border), new ShaderFilter(angel)]);
 					camEst.setFilters([new ShaderFilter(border), new ShaderFilter(angel)]);
 				}
