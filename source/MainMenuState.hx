@@ -516,13 +516,13 @@ class MainMenuState extends MusicBeatState {
 						canselectshit = false;
 
 						FlxG.sound.music.pause();
-						openSubState(new VideoSubState('garlic'));				
+						//openSubState(new VideoSubState('garlic'));				
 					case 'v3':
 						typin = '';
 						canselectshit = false;
 
 						FlxG.sound.music.pause();
-						openSubState(new VideoSubState('V3'));			
+						//openSubState(new VideoSubState('V3'));			
 					case 'peepy':
 						CoolUtil.browserLoad('https://itemlabel.com/products/peepy');
 					case 'natetdom':
@@ -530,19 +530,19 @@ class MainMenuState extends MusicBeatState {
 						canselectshit = false;
 
 						FlxG.sound.music.pause();
-						openSubState(new VideoSubState('nate'));
+						//openSubState(new VideoSubState('nate'));
 					case 'unbeatable':
 						typin = '';
 						canselectshit = false;
 
 						FlxG.sound.music.pause();
-						openSubState(new VideoSubState('i hate this'));			
+						//openSubState(new VideoSubState('i hate this'));			
 					case 'scrubb':
 						typin = '';
 						canselectshit = false;
 
 						FlxG.sound.music.pause();
-						openSubState(new VideoSubState('scrubb'));
+						//openSubState(new VideoSubState('scrubb'));
 				}
 			}
 
@@ -1103,17 +1103,6 @@ class MainMenuState extends MusicBeatState {
 
 		penkStage++;
 	}
+    }
 }
 
-class VideoSubState extends MusicBeatSubstate
-{
-	public function new(file:String){
-		(new FlxVideo(Paths.video('secrets/$file'))).finishCallback = function(){
-			FlxG.sound.music.resume();
-			MainMenuState.canselectshit = true;
-
-			close();
-		}
-		super();
-	}
-}
