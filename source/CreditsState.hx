@@ -324,9 +324,9 @@ class CreditsState extends MusicBeatState
 				MusicBeatState.switchState(new MainMenuState());
 			}
 
-			if (controls.UI_DOWN_P)
+			if (controls.UI_DOWN)
 				newPos += 40;
-			if (controls.UI_UP_P)
+			if (controls.UI_UP)
 				newPos -= 40;
 
 			if(newPos < 200)
