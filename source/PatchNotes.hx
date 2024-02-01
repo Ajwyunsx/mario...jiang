@@ -234,7 +234,7 @@ class PatchNotes extends MusicBeatState
 	function changePatchNotes(ver:Int) {
 
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-		noteText.text = Assets.getText('assets/data/Patchs/' + ver).trim();
+		noteText.text = Assets.getText('assets/data/Patchs/' + ver + '.txt').trim();
 		noteText.visible = true;
 		noteText.y = 30;
 		pageBar.visible = true;
