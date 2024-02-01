@@ -12,7 +12,6 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.system.System;
-import cpp.vm.Gc;
 
 #if CRASH_HANDLER
 import lime.app.Application;
@@ -94,12 +93,7 @@ class Main extends Sprite {
 	}
 
 	public function setupGame():Void {
-        Lib.application.window.onClose.add(PlayState.onWinClose);
-		
-		#if mobile
-
-		
-	    #end
+                Lib.application.window.onClose.add(PlayState.onWinClose);
 		
 		#if !debug
 		initialState = TitleState;
@@ -118,11 +112,9 @@ class Main extends Sprite {
 				Paths.clearStoredMemory(true);
 				FlxG.bitmap.dumpCache();
 			}
-			clearMajor();
 		});
 		FlxG.signals.postStateSwitch.add(function () {
 			Paths.clearUnusedMemory();
-			clearMajor();
 			Main.skipNextDump = false;
 		});
 
@@ -164,10 +156,6 @@ class Main extends Sprite {
 				sprite.__cacheBitmapColorTransform = null;
 			}
 		}
-	}
-	public static function clearMajor() {
-		Gc.run(true);
-		Gc.compact();
 	}
 	#if CRASH_HANDLER
 	function onCrash(e:UncaughtErrorEvent):Void
