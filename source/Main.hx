@@ -39,34 +39,6 @@ class Main extends Sprite {
 
 	public static var skipNextDump:Bool = false;
 	public static var forceNoVramSprites:Bool = #if android false #else true #end;
-	
-	static final videos:Array<String> = [
-		"abandoncut",
-		"continue",
-		"cutscene2",
-		"cutscene3",
-		"demise_cutscene",
-		"demise_cutscene_SOUND",
-		"dsintro",
-		"ihy_cutscene",
-		"abandoncut",
-		"continue",
-		"cutscene2",
-		"cutscene3",
-		"demise_cutscene",
-		"demise_cutscene_SOUND",
-		"dsintro",
-		"ihy_cutscene"	
-	];
-	
-	static final otherVideos:Array<String> = [
-		"garlic",
-		"nate",
-		"i hate this",
-		"V3",
-		"scrubb"
-		
-	];
 
 	public static function main():Void {
 		Lib.current.addChild(new Main());
@@ -104,23 +76,7 @@ class Main extends Sprite {
 		if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
 			FileSystem.createDirectory(Generic.returnPath() + 'assets');
 		}
-
-		if (!FileSystem.exists(Generic.returnPath() + 'assets/videos')) {
-			FileSystem.createDirectory(Generic.returnPath() + 'assets/videos');
-		}
-		
-		if (!FileSystem.exists(Generic.returnPath() + 'assets/videos/secrets')) {
-			FileSystem.createDirectory(Generic.returnPath() + 'assets/videos/secrets');
-		}
-
-		for (video in videos) {
-			Generic.copyContent(Paths.truevideo(video), Paths.truevideo(video));
-		}
-		
-		for (video in otherVideos) {
-			Generic.copyContent(Paths.trueOtherVideo(video), Paths.trueOtherVideo(video));
-		}
-	    #end
+	        #end
 		
 		#if !debug
 		initialState = TitleState;
