@@ -5645,19 +5645,19 @@ class PlayState extends MusicBeatState
 					camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), new ShaderFilter(angel)]);
 				}
 
-				if (oldTV)
+			        if (oldTV)
 				{
 					if (ClientPrefs.filtro85)
 					{
 						oldFX = new OldTVShader();
 
-						camGame.setFilters([new ShaderFilter(oldFX), new ShaderFilter(border)]);
-						camEst.setFilters([new ShaderFilter(oldFX), new ShaderFilter(border)]);
-						camHUD.setFilters([new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camHUD.setFilters([new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
 
 						contrastFX = new BrightnessContrastShader();
 
-						camGame.setFilters([new ShaderFilter(contrastFX), new ShaderFilter(oldFX), new ShaderFilter(border)]);
+						camGame.setFilters([new ShaderFilter(contrastFX), new ShaderFilter(vcr), new ShaderFilter(oldFX), new ShaderFilter(border)]);
 					}
 				}
 			}
@@ -7198,6 +7198,11 @@ class PlayState extends MusicBeatState
 			});
 		}
 
+		if (tvEffect && ClientPrefs.filtro85)
+		{
+			vcr.update(elapsed);
+		}
+		
 		if (oldTV && ClientPrefs.filtro85)
 		{
 			oldFX.update(elapsed);
@@ -7234,6 +7239,12 @@ class PlayState extends MusicBeatState
 					}
 					}
 				}
+				}
+			        if(ClientPrefs.filtro85 && endingnes)
+				{
+					val += elapsed;
+					val /= 4;
+					beatend.update(val, elapsed);
 				}
 			}
 		
