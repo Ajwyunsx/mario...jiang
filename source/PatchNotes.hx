@@ -126,11 +126,6 @@ class PatchNotes extends MusicBeatState
 		mousey = FlxG.mouse.screenY;
 		ogTexty = noteText.y;
 		wheely = noteText.y;
-	
-	        #if android
-		addVirtualPad(NONE, B);
-		addPadCamera();
-		#end
 	}
 
 	override function update(elapsed:Float)
@@ -156,7 +151,7 @@ class PatchNotes extends MusicBeatState
 				}
 			});
 
-		if (controls.BACK)
+		if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
 			{
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				MusicBeatState.switchState(new MainMenuState());
