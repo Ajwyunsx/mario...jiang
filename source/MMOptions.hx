@@ -1344,7 +1344,6 @@ class MarioSubstate extends MusicBeatSubstate
 
 	static var options:Array<String> = [
 		'GRAPHICS',
-		'GPU Textures',
 		'Enable TV Effect',
 		'Enable Resume Wait',
 		'Menu BG',
