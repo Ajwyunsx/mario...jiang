@@ -39,8 +39,8 @@ class Main extends Sprite {
 
 	public static var skipNextDump:Bool = false;
 	public static var forceNoVramSprites:Bool = #if android false #else true #end;
-
-		static final videos:Array<String> = [
+	
+	static final videos:Array<String> = [
 		"abandoncut",
 		"continue",
 		"cutscene2",
@@ -49,27 +49,25 @@ class Main extends Sprite {
 		"demise_cutscene_SOUND",
 		"dsintro",
 		"ihy_cutscene",
-		"its-a-me_cutscene",
-		"Itsame_cutscene",
-		"luigifuckingdies",
-		"overdue_cutscn",
-		"penkaru",
-		"post_ss_cutscene",
-		"Powerdownscene",
-		"promocut",
-		"ss_cutscene",
-		"the what"	
+		"abandoncut",
+		"continue",
+		"cutscene2",
+		"cutscene3",
+		"demise_cutscene",
+		"demise_cutscene_SOUND",
+		"dsintro",
+		"ihy_cutscene"	
 	];
-
+	
 	static final otherVideos:Array<String> = [
 		"garlic",
 		"nate",
 		"i hate this",
 		"V3",
 		"scrubb"
-
+		
 	];
-	
+
 	public static function main():Void {
 		Lib.current.addChild(new Main());
 	}
@@ -77,10 +75,7 @@ class Main extends Sprite {
 	public function new() {
 		super();
 
-		#if mobile
-		Generic.initCrashHandler();
-		Generic.mode = ROOTDATA;
-		#end
+		
 		
 		if (stage != null) {
 			init();
@@ -102,26 +97,9 @@ class Main extends Sprite {
         Lib.application.window.onClose.add(PlayState.onWinClose);
 		
 		#if mobile
-		if (!FileSystem.exists(Generic.returnPath() + 'assets')) {
-			FileSystem.createDirectory(Generic.returnPath() + 'assets');
-		}
 
-		if (!FileSystem.exists(Generic.returnPath() + 'assets/videos')) {
-			FileSystem.createDirectory(Generic.returnPath() + 'assets/videos');
-		}
-
-		if (!FileSystem.exists(Generic.returnPath() + 'assets/videos/secrets')) {
-			FileSystem.createDirectory(Generic.returnPath() + 'assets/videos/secrets');
-		}
-
-		for (video in videos) {
-			Generic.copyContent(Paths.truevideo(video), Paths.truevideo(video));
-		}
-
-		for (video in otherVideos) {
-			Generic.copyContent(Paths.trueOtherVideo(video), Paths.trueOtherVideo(video));
-		}
-		#end
+		
+	    #end
 		
 		#if !debug
 		initialState = TitleState;
