@@ -1039,64 +1039,7 @@ class MainMenuState extends MusicBeatState {
 
 				new FlxTimer().start(2, function(tmr:FlxTimer) {
 					FlxG.camera.alpha = 0;
-					new FlxTimer().start(1, function (tmr:FlxTimer) {
-							#if VIDEOS_ALLOWED
-							var foundFile:Bool = false;
-							var fileName:String = #if MODS_ALLOWED Paths.modFolders('videos/' + "penkaru" + '.' + Paths.VIDEO_EXT); #else ''; #end
-							#if sys
-							if (FileSystem.exists(fileName))
-							{
-								foundFile = true;
-							}
-							#end
-
-							if (!foundFile) {
-								fileName = Paths.video("penkaru");
-								if (#if sys FileSystem.exists(fileName) #else OpenFlAssets.exists(fileName) #end)
-									foundFile = true;
-
-								if (foundFile) {
-									Lib.application.window.title = "*  You look inside the drawer and find a old vhs of a dance you used to do in highschool. *  Did this ever exist? When did you take this video?";
-									Lib.application.window.resizable = false;
-									FlxG.resizeWindow(1280, 720);
-
-									FlxG.sound.volume = 1;
-									FlxG.sound.soundTray.visual = false;
-									FlxG.sound.soundTray.show(true);
-
-									// Am I Evil??? (i do not care about streamer mode)
-									#if windows
-									CppAPI.removeWindowIcon();
-									#end
-									FlxG.fullscreen = FlxG.autoPause = false;
-									Lib.application.window.onClose.add(function () {
-										Lib.application.window.onClose.cancel();
-									});
-									
-									(new FlxVideo(fileName)).finishCallback = function() {Sys.exit(0);}
-									(new FlxTimer()).start(52, function (tmr:FlxTimer) {
-										#if windows
-										CppAPI._setWindowLayered();
-										#end
-					 
-										var numTween:NumTween = FlxTween.num(1, 0, 3, {
-											onComplete: function(twn:FlxTween) {
-												Sys.exit(0);
-										}});
-					
-										numTween.onUpdate = function(twn:FlxTween)
-										{
-											#if windows
-											CppAPI.setWindowOppacity(numTween.value);
-											#end
-										}
-									});
-								}
-								else
-									FlxG.log.warn('Couldnt find video file: ' + fileName);
-								#end
-						}
-					});
+				
 				});
 			});
 		}
