@@ -14389,7 +14389,8 @@ class PlayState extends MusicBeatState
 								} 
 								ClientPrefs.storySave[0] = true;
 								ClientPrefs.saveSettings();
-								startVideo('post_ss_cutscene');
+								cutVid.playVideo(Asset2File.getPath("assets/videos/post_ss_cutscene.mp4"));
+								startVideo();
 								
 							}
 						});
@@ -14532,7 +14533,8 @@ class PlayState extends MusicBeatState
 						ease: FlxEase.quadInOut,
 						onComplete: function(twn:FlxTween)
 						{
-							startVideo('continue');
+							cutVid.playVideo(Asset2File.getPath("assets/videos/continue.mp4"));
+							startVideo();
 							ClientPrefs.finish1 = true;
 							isWarp = false;
 						}
