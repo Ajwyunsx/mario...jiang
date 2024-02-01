@@ -82,9 +82,9 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		Conductor.songPosition = 0;
 		Conductor.changeBPM(50);
-
-		voiceline = new FlxSound().loadEmbedded(Paths.sound(PlayState.curStage + '/line' + FlxG.random.int(1, vaCount)));
-
+        try{
+		    voiceline = new FlxSound().loadEmbedded(Paths.sound(PlayState.curStage + '/line' + FlxG.random.int(1, vaCount)));
+        }
 		bf = new Boyfriend(x, y, characterName);
 		add(bf);
 
@@ -861,13 +861,14 @@ class GameOverSubstate extends MusicBeatSubstate
 					{
 						var startingVolume:Float = FlxG.sound.music.volume;
 						FlxTween.tween(FlxG.sound.music, {volume: startingVolume / 2}, 1, {onComplete: function(twn:FlxTween)
-						{
+						{   try{
 							voiceline.volume = 0.7;
 							voiceline.play();
 							// var voiceline = new FlxSound().Paths.sound(PlayState.curStage + '/line' + FlxG.random.int(1, vaCount));
 							timers.push(new FlxTimer().start(voiceline.length / 1000, function(tmr:FlxTimer){
 								FlxTween.tween(FlxG.sound.music, {volume: startingVolume}, 1);
 							}));
+							}
 						}});
 					}));
 			}
@@ -990,7 +991,7 @@ class GameOverSubstate extends MusicBeatSubstate
 				else
 					FlxTween.tween(FlxG.sound.music, {volume: 0}, 2.5);
 				if(hasVA)
-					voiceline.stop();
+					try{ voiceline.stop(); }
 				FlxG.sound.play(Paths.music(endSoundName));
 				if(PlayState.curStage == 'landstage')
 					FlxG.sound.play(Paths.music('GBchuckle'));
