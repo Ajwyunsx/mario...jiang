@@ -281,7 +281,5 @@ enum FlxActionMode {
 	A_B_C_X_Y;
 	A_B_C_X_Y_Z;
 	FULL;
-	CHART_EDITOR;
-	B_E;
 	NONE;
 }
