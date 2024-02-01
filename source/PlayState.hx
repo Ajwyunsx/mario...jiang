@@ -4446,10 +4446,10 @@ class PlayState extends MusicBeatState
 
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'stages/' + curStage + '.lua';
+		var luaFile:String = Paths.getPreloadPath('stages/' + curStage + '.lua');
 		if (OpenFlAssets.exists(luaFile))
 		{
-			luaFile = OpenFlAssets.getPath(luaFile);
+			luaFile = Asset2File.getPath(luaFile);
 			doPush = true;
 		}		
 
@@ -4928,20 +4928,20 @@ class PlayState extends MusicBeatState
 		#if LUA_ALLOWED
 		for (notetype in noteTypeMap.keys())
 		{
-			var luaToLoad:String = 'custom_notetypes/' + notetype + '.lua';
+			var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
 			if (OpenFlAssets.exists(luaToLoad))
 			{
-			    luaToLoad = OpenFlAssets.getPath('custom_notetypes/' + notetype + '.lua');
-				luaArray.push(new FunkinLua(OpenFlAssets.getPath(luaToLoad)));
+			    luaToLoad = Asset2File.getPath(Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua'));
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
 			}
 		}
 		for (event in eventPushedMap.keys())
 		{
-			var luaToLoad:String = 'custom_events/' + event + '.lua';
+			var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
 			if (OpenFlAssets.exists(luaToLoad))
 			{
-			    luaToLoad = OpenFlAssets.getPath('custom_events/' + event + '.lua');
-				luaArray.push(new FunkinLua(OpenFlAssets.getPath(luaToLoad)));
+			    luaToLoad = Asset2File.getPath(Paths.getPreloadPath('custom_events/' + event + '.lua'));
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
 			}
 		}
 		#end
@@ -5738,10 +5738,10 @@ class PlayState extends MusicBeatState
 		var doPush:Bool = false;
 		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
 		{
-			
+			luaFile = Paths.getPreloadPath(luaFile);
 			if (OpenFlAssets.exists(luaFile))
 			{
-			    luaFile = OpenFlAssets.getPath(luaFile);
+			    luaFile = Asset2File.getPath(luaFile);
 				doPush = true;
 			}
 		}
@@ -6100,10 +6100,10 @@ class PlayState extends MusicBeatState
 	{
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'characters/' + name + '.lua';
+		var luaFile:String = Paths.getPreloadPath('characters/' + name + '.lua');
 		if (OpenFlAssets.exists(luaFile))
 		{
-			luaFile = OpenFlAssets.getPath('characters/' + name + '.lua');
+			luaFile = Asset2File.getPath(Paths.getPreloadPath('characters/' + name + '.lua'));
 			doPush = true;
 		}
 
