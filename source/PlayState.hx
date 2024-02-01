@@ -4441,16 +4441,7 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
-		#if LUA_ALLOWED
-		var doPush:Bool = false;
-		var luaFile:String = 'stages/' + curStage + '.lua';		
-		{
-			luaFile = Paths.getPreloadPath(luaFile);
-			if (FileSystem.exists(luaFile))
-			{
-				doPush = true;
-			}
-		}
+		
 
 		if (doPush)
 			luaArray.push(new FunkinLua(luaFile));
@@ -6085,35 +6076,7 @@ class PlayState extends MusicBeatState
 
 	function startCharacterLua(name:String)
 	{
-		#if LUA_ALLOWED
-		var doPush:Bool = false;
-		var luaFile:String = 'characters/' + name + '.lua';
-		#if MODS_ALLOWED
-		if (FileSystem.exists(Paths.modFolders(luaFile)))
-		{
-			luaFile = Paths.modFolders(luaFile);
-			doPush = true;
-		}
-		else
-		#end
-		{
-			luaFile = Paths.getPreloadPath(luaFile);
-			if (FileSystem.exists(luaFile))
-			{
-				doPush = true;
-			}
-		}
-
-		if (doPush)
-		{
-			for (lua in luaArray)
-			{
-				if (Reflect.getProperty(lua, 'scriptName') == luaFile)
-					return;
-			}
-			luaArray.push(new FunkinLua(luaFile));
-		}
-		#end
+		
 	}
 
 	function startCharacterPos(char:Character, ?gfCheck:Bool = false)
