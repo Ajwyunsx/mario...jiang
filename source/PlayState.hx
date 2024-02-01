@@ -5737,7 +5737,7 @@ class PlayState extends MusicBeatState
 			luaFile = Paths.getPreloadPath(luaFile);
 			if (Assets.exists(luaFile))
 			{
-			    luaFile = Assets.getText(Paths.getPreloadPath(luaFile));
+			    luaFile = Assets.getText(luaFile);
 				doPush = true;
 			}
 		}
