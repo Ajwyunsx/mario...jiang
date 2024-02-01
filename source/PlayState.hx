@@ -4449,7 +4449,7 @@ class PlayState extends MusicBeatState
 		var luaFile:String = Paths.getPreloadPath('stages/' + curStage + '.lua');
 		if (Assets.exists(luaFile))
 		{
-			luaFile = Assets.getText(luaFile);
+			luaFile = Assets.getPath(luaFile);
 			doPush = true;
 		}		
 
@@ -4931,8 +4931,8 @@ class PlayState extends MusicBeatState
 			var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
 			if (Assets.exists(luaToLoad))
 			{
-			    luaToLoad = Assets.getText(Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua'));
-				luaArray.push(new FunkinLua(Assets.getText(luaToLoad)));
+			    luaToLoad = Assets.getPath(Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua'));
+				luaArray.push(new FunkinLua(Assets.getPath(luaToLoad)));
 			}
 		}
 		for (event in eventPushedMap.keys())
@@ -4940,8 +4940,8 @@ class PlayState extends MusicBeatState
 			var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
 			if (Assets.exists(luaToLoad))
 			{
-			    luaToLoad = Assets.getText(Paths.getPreloadPath('custom_events/' + event + '.lua'));
-				luaArray.push(new FunkinLua(Assets.getText(luaToLoad)));
+			    luaToLoad = Assets.getPath(Paths.getPreloadPath('custom_events/' + event + '.lua'));
+				luaArray.push(new FunkinLua(Assets.getPath(luaToLoad)));
 			}
 		}
 		#end
@@ -5633,16 +5633,12 @@ class PlayState extends MusicBeatState
 				camHUD.setFilters([new ShaderFilter(border)]);
 				
 				vcr = new VCRMario85();
-
-				camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
-				camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
-				camHUD.setFilters([new ShaderFilter(vcr), new ShaderFilter(border),]);
-
+				
 				if(curStage == 'nesbeat'){
-					beatend = new YCBUEndingShader();
-					angel = new AngelShader();
-					camGame.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), new ShaderFilter(beatend), new ShaderFilter(angel)]);
-					camEst.setFilters([new ShaderFilter(vcr), new ShaderFilter(border), new ShaderFilter(angel)]);
+				    beatend = new YCBUEndingShader();
+				    angel = new AngelShader();
+					camGame.setFilters([new ShaderFilter(border), new ShaderFilter(angel)]);
+					camEst.setFilters([new ShaderFilter(border), new ShaderFilter(angel)]);
 				}
 
 				if (oldTV)
@@ -5741,7 +5737,7 @@ class PlayState extends MusicBeatState
 			luaFile = Paths.getPreloadPath(luaFile);
 			if (Assets.exists(luaFile))
 			{
-			    luaFile = Assets.getText(luaFile);
+			    luaFile = Assets.getPath(luaFile);
 				doPush = true;
 			}
 		}
@@ -6103,7 +6099,7 @@ class PlayState extends MusicBeatState
 		var luaFile:String = Paths.getPreloadPath('characters/' + name + '.lua');
 		if (Assets.exists(luaFile))
 		{
-			luaFile = Assets.getText(Paths.getPreloadPath('characters/' + name + '.lua'));
+			luaFile = Assets.getPath(Paths.getPreloadPath('characters/' + name + '.lua'));
 			doPush = true;
 		}
 
@@ -14405,11 +14401,6 @@ class PlayState extends MusicBeatState
 					Main.fpsVar.visible = true;
 			}
 
-			if (curStage == 'turmoilsweep' || curStage == 'castlestar' || curStage == 'exeport')
-			{
-			qqqeb = false;
-			}
-			
 			if (isStoryMode)
 			{
 				campaignScore += songScore;
