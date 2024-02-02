@@ -15,7 +15,7 @@ class Storage
 {
 	public static function copyNecessaryFiles():Void
 	{
-		/*#if LUA_ALLOWED
+		#if LUA_ALLOWED
 		for (dir in ['characters', 'data', 'custom_events', 'custom_notetypes', 'stages'])
 		{
 			for (file in Assets.list().filter(folder -> folder.startsWith('assets/$dir')))
@@ -31,7 +31,7 @@ class Storage
 				}
 			}
 		}
-		#end */
+		#end
 
 		#if VIDEOS_ALLOWED
 		for (file in Assets.list().filter(folder -> folder.startsWith('assets/videos')))
