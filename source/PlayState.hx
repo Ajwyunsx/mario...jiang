@@ -4447,16 +4447,16 @@ class PlayState extends MusicBeatState
 
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'assets/stages/' + curStage + '.lua';
+		var luaFile:String = 'stages/' + curStage + '.lua';
 			
-                        luaFile = Asset2File.getPath(luaFile);
-			if (Assets.exists(luaFile))
+                        luaFile = Paths.getPreloadPath(luaFile);
+			if (OpenFlAssets.exists(luaFile))
 			{
 				doPush = true;
 			}
 
 		if (doPush)
-			luaArray.push(new FunkinLua(luaFile));
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
 		#end
 
 
@@ -5717,16 +5717,16 @@ class PlayState extends MusicBeatState
 
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'assets/data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
-			luaFile = Asset2File.getPath(luaFile);
-			if (Assets.exists(luaFile))
+		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
+			luaFile = Paths.getPreloadPath(luaFile);
+			if (OpenFlAssets.exists(luaFile))
 			{
 				doPush = true;
 			}
 		
 
 		if (doPush)
-			luaArray.push(new FunkinLua(luaFile));
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
 		#end
 
 		var daSong:String = Paths.formatToSongPath(curSong);
@@ -6079,10 +6079,10 @@ class PlayState extends MusicBeatState
 	{
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'assets/characters/' + name + '.lua';
+		var luaFile:String = 'characters/' + name + '.lua';
 		 
-			luaFile = Asset2File.getPath(luaFile);
-			if (Assets.exists(luaFile))
+			luaFile = Paths.getPreloadPath(luaFile);
+			if (OpenFlAssets.exists(luaFile))
 			{
 				doPush = true;
 			}
@@ -6095,7 +6095,7 @@ class PlayState extends MusicBeatState
 				if (Reflect.getProperty(lua, 'scriptName') == luaFile)
 					return;
 			}
-			luaArray.push(new FunkinLua(luaFile));
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
 		}
 		#end
 	}
