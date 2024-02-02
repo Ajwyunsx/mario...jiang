@@ -25,16 +25,15 @@ jobs:
         uses: nttld/setup-ndk@main
         id: setup-ndk
         with:
-          ndk-version: r21e
+          ndk-version: r15c
 
       - name: Setup Java JDK
         uses: actions/setup-java@main
         with:
           distribution: 'zulu'
-          java-version: 18
+          java-version: 11
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@main
+      
 
       - name: Setup Haxe
         uses: krdlab/setup-haxe@v1.2.0
@@ -74,7 +73,7 @@ jobs:
           haxelib run lime config ANDROID_SETUP true
           haxelib set lime 7.9.0
           haxelib set openfl 9.1.0
-          haxelib set flixel-addons 3.0.2
+          haxelib set flixel-addons 2.11.0
           haxelib set hxcpp 4.2.1
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
