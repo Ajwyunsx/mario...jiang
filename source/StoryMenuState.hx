@@ -245,7 +245,6 @@ class StoryMenuState extends MusicBeatSubstate
 		}
 		else if(controls.ACCEPT && inCutscene){
 			finishVideo();
-			vid.bitmap.stop();
 		}
 
 		charsShader.update(elapsed);
