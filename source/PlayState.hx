@@ -5719,7 +5719,7 @@ class PlayState extends MusicBeatState
 		var doPush:Bool = false;
 		var luaFile:String = 'assets/data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
 			luaFile = Asset2File.getPath(luaFile);
-			if (OpenFlAssets.exists(luaFile))
+			if (Assets.exists(luaFile))
 			{
 				doPush = true;
 			}
@@ -6082,7 +6082,7 @@ class PlayState extends MusicBeatState
 		var luaFile:String = 'assets/characters/' + name + '.lua';
 		 
 			luaFile = Asset2File.getPath(luaFile);
-			if (OpenFlAssets.exists(luaFile))
+			if (Assets.exists(luaFile))
 			{
 				doPush = true;
 			}
