@@ -4932,7 +4932,26 @@ class PlayState extends MusicBeatState
 		eventPushedMap.clear();
 		eventPushedMap = null;
 
-		// After all characters being loaded, it makes then invisible 0.01s later so that the player won't freeze when you change characters
+		#if LUA_ALLOWED
+		for (notetype in noteTypeMap.keys())
+		{
+			var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
+			if (OpenFlAssets.exists(luaToLoad))
+			{
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
+			}
+		}
+		for (event in eventPushedMap.keys())
+		{
+			var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
+			if (OpenFlAssets.exists(luaToLoad))
+			{
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
+			}
+		}
+		#end
+
+                // After all characters being loaded, it makes then invisible 0.01s later so that the player won't freeze when you change characters
 		// add(strumLine);
 
 		camFollow = new FlxPoint();
