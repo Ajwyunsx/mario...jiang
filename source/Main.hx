@@ -95,6 +95,19 @@ class Main extends Sprite {
 	public function setupGame():Void {
                 Lib.application.window.onClose.add(PlayState.onWinClose);
 		
+		#if android
+		if (VERSION.SDK_INT > 30)
+			Sys.setCwd(Path.addTrailingSlash(Context.getObbDir()));
+		else
+			Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
+		#elseif ios
+		Sys.setCwd(System.documentsDirectory);
+		#end
+		
+		#if mobile
+		Storage.copyNecessaryFiles();
+		#end
+			
 		#if !debug
 		initialState = TitleState;
 		#end
