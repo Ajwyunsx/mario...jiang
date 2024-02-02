@@ -4446,7 +4446,7 @@ class PlayState extends MusicBeatState
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = Paths.getPreloadPath('stages/' + curStage + '.lua');
-		if (OpenFlAssets.exists(luaFile))
+		if (Assets.exists(luaFile))
 		{
 			luaFile = Asset2File.getPath(luaFile);
 			doPush = true;
@@ -4928,7 +4928,7 @@ class PlayState extends MusicBeatState
 		for (notetype in noteTypeMap.keys())
 		{
 			var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
-			if (OpenFlAssets.exists(luaToLoad))
+			if (Assets.exists(luaToLoad))
 			{
 			    luaToLoad = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
 				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
@@ -4937,7 +4937,7 @@ class PlayState extends MusicBeatState
 		for (event in eventPushedMap.keys())
 		{
 			var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
-			if (OpenFlAssets.exists(luaToLoad))
+			if (Assets.exists(luaToLoad))
 			{
 			    luaToLoad = Paths.getPreloadPath('custom_events/' + event + '.lua');
 				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
@@ -5738,7 +5738,7 @@ class PlayState extends MusicBeatState
 		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
 		{
 			luaFile = Paths.getPreloadPath(luaFile);
-			if (OpenFlAssets.exists(luaFile))
+			if (Assets.exists(luaFile))
 			{
 			    luaFile = Asset2File.getPath(luaFile);
 				doPush = true;
@@ -6099,21 +6099,20 @@ class PlayState extends MusicBeatState
 	{
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = Paths.getPreloadPath('characters/' + name + '.lua');
-		if (OpenFlAssets.exists(luaFile))
-		{
-			luaFile = Paths.getPreloadPath('characters/' + name + '.lua');
+		var luaFile:String = 'characters/' + name + '.lua';
+
+		luaFile = Paths.getPreloadPath(luaFile);
+		if(Assets.exists(luaFile)) {
 			doPush = true;
 		}
 
-		if (doPush)
+		if(doPush)
 		{
-			for (lua in luaArray)
+			for (script in luaArray)
 			{
-				if (Reflect.getProperty(lua, 'scriptName') == luaFile)
-					return;
+				if(script.scriptName == luaFile) return;
 			}
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile), false));
 		}
 		#end
 	}
