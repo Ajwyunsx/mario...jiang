@@ -11,6 +11,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
 import lime.utils.Assets;
+import lime.system.System;
 import flixel.FlxSprite;
 #if sys
 import sys.io.File;
@@ -193,7 +194,7 @@ class Paths
 
 	static public function video(key:String)
 	{
-		return Asset2File.getPath('assets/videos/$key.$VIDEO_EXT');
+		return lime.system.System.applicationStorageDirectory + 'assets/videos/$key.$VIDEO_EXT';
 	}
 	
 	static public function truevideo(key:String)
