@@ -4445,7 +4445,7 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
-		/*#if LUA_ALLOWED
+		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'stages/' + curStage + '.lua';
 			
@@ -4457,7 +4457,7 @@ class PlayState extends MusicBeatState
 
 		if (doPush)
 			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
-		#end */
+		#end
 
 
 		var gfVersion:String = SONG.player3;
@@ -4932,7 +4932,6 @@ class PlayState extends MusicBeatState
 		eventPushedMap.clear();
 		eventPushedMap = null;
 
-		/*
                 #if LUA_ALLOWED
 		for (notetype in noteTypeMap.keys())
 		{
@@ -4950,7 +4949,7 @@ class PlayState extends MusicBeatState
 				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
 			}
 		}
-		#end */
+		#end
 
                 // After all characters being loaded, it makes then invisible 0.01s later so that the player won't freeze when you change characters
 		// add(strumLine);
@@ -5735,7 +5734,7 @@ class PlayState extends MusicBeatState
 		startingSong = true;
 		updateTime = true;
 
-		/*#if LUA_ALLOWED
+		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
 			luaFile = Paths.getPreloadPath(luaFile);
@@ -5747,7 +5746,7 @@ class PlayState extends MusicBeatState
 
 		if (doPush)
 			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
-		#end */
+		#end
 
 		var daSong:String = Paths.formatToSongPath(curSong);
 		trace(isStoryMode);
@@ -6097,28 +6096,20 @@ class PlayState extends MusicBeatState
 
 	function startCharacterLua(name:String)
 	{
-		/*
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'characters/' + name + '.lua';
 		 
 			luaFile = Paths.getPreloadPath(luaFile);
-			if (OpenFlAssets.exists(luaFile))
+			if (Assets.exists(luaFile))
 			{
 				doPush = true;
 			}
 		
 
 		if (doPush)
-		{
-			for (lua in luaArray)
-			{
-				if (Reflect.getProperty(lua, 'scriptName') == luaFile)
-					return;
-			}
 			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
-		}
-		#end */
+		#end
 	}
 
 	function startCharacterPos(char:Character, ?gfCheck:Bool = false)
