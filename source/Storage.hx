@@ -15,24 +15,6 @@ class Storage
 {
 	public static function copyNecessaryFiles():Void
 	{
-		#if MODS_ALLOWED
-		for (dir in ['characters', 'data', 'stages', 'weeks'])
-		{
-			for (file in Assets.list().filter(folder -> folder.startsWith('assets/$dir')))
-			{
-				if (Path.extension(file) == 'json')
-				{
-					// Ment for FNF's libraries system...
-					final shit:String = file.replace(file.substring(0, file.indexOf('/', 0) + 1), '');
-					final library:String = shit.replace(shit.substring(shit.indexOf('/', 0), shit.length), '');
-
-					@:privateAccess
-					Storage.copyFile(Assets.libraryPaths.exists(library) ? '$library:$file' : file, file);
-				}
-			}
-		}
-		#end
-
 		#if LUA_ALLOWED
 		for (dir in ['characters', 'data', 'custom_events', 'custom_notetypes', 'stages'])
 		{
