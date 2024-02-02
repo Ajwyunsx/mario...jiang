@@ -50,8 +50,10 @@ import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 import haxe.Json;
 import haxe.Timer;
-import VideoHandler;
-import VideoSprite;
+#if VIDEOS_ALLOWED
+import hxcodec.VideoHandler;
+import hxcodec.VideoSprite;
+#end
 import lime.app.Application;
 import lime.utils.Assets;
 import modchart.*;
@@ -6108,12 +6110,11 @@ class PlayState extends MusicBeatState
 
 		if(doPush)
 		{
-			for (lua in luaArray)
+			for (script in luaArray)
 			{
-				if (Reflect.getProperty(lua, 'scriptName') == luaFile)
-					return;
+				if(script.scriptName == luaFile) return;
 			}
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile), false));
 		}
 		#end
 	}
