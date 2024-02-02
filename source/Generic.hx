@@ -41,15 +41,6 @@ class Generic {
 		
 		path = lime.system.System.applicationStorageDirectory;
 			
-		
-		if (path != null && path.length > 0) {
-			trace(path);
-			return path;
-		}
-		trace('DEATH');
-		return null;
-		#else
-		path = '';
 		return path;
 		#end
 	}
