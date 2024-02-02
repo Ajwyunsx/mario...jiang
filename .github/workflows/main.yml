@@ -39,6 +39,19 @@ jobs:
         uses: krdlab/setup-haxe@v1.2.0
         with:
           haxe-version: 4.2.5
+      
+      - name: Restore Previous Cache
+        if: ${{ always() }}
+        id: cache-debug-build-android-restore
+        uses: actions/cache/restore@main
+        with:
+          path: |
+            ~/haxelib
+            ~/.gradle
+            export/release/android/haxe
+            export/release/android/obj
+          key: cache-android-build
+      
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
@@ -78,9 +91,8 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
-      - name: Building
-        run: haxelib run lime build android -release
-
+      - name: Compile
+        run: haxelib run lime build android -D NO_PRECOMPILED_HEADERS --app-version="4.0.0-${{ github.run_id}}"
       
       - name: Clear Previous Cache
         if: ${{ always() }}
