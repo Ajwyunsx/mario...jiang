@@ -4447,10 +4447,10 @@ class PlayState extends MusicBeatState
 
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'stages/' + curStage + '.lua';
+		var luaFile:String = 'assets/stages/' + curStage + '.lua';
 			
-                        luaFile = Paths.getPreloadPath(luaFile);
-			if (FileSystem.exists(luaFile))
+                        luaFile = Asset2File.getPath(luaFile);
+			if (OpenFlAssets.exists(luaFile))
 			{
 				doPush = true;
 			}
@@ -5717,8 +5717,8 @@ class PlayState extends MusicBeatState
 
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
-			luaFile = Paths.getPreloadPath(luaFile);
+		var luaFile:String = 'assets/data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
+			luaFile = Asset2File.getPath(luaFile);
 			if (OpenFlAssets.exists(luaFile))
 			{
 				doPush = true;
@@ -6079,10 +6079,10 @@ class PlayState extends MusicBeatState
 	{
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'characters/' + name + '.lua';
+		var luaFile:String = 'assets/characters/' + name + '.lua';
 		 
-			luaFile = Paths.getPreloadPath(luaFile);
-			if (FileSystem.exists(luaFile))
+			luaFile = Asset2File.getPath(luaFile);
+			if (OpenFlAssets.exists(luaFile))
 			{
 				doPush = true;
 			}
