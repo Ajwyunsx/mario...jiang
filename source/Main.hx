@@ -1,5 +1,9 @@
 package;
 
+#if android
+import android.content.Context;
+import android.os.Build;
+#end
 import flixel.graphics.FlxGraphic;
 import flixel.FlxCamera;
 import flixel.FlxG;
