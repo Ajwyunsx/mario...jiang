@@ -4450,7 +4450,7 @@ class PlayState extends MusicBeatState
 		var luaFile:String = 'assets/stages/' + curStage + '.lua';
 			
                         luaFile = Asset2File.getPath(luaFile);
-			if (OpenFlAssets.exists(luaFile))
+			if (Assets.exists(luaFile))
 			{
 				doPush = true;
 			}
