@@ -20,8 +20,8 @@ import flixel.tweens.misc.NumTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 #if VIDEOS_ALLOWED
-import VideoHandler;
-import VideoSprite;
+import hxcodec.VideoHandler;
+import hxcodec.VideoSprite;
 #end
 import lime.net.curl.CURLCode;
 import openfl.filters.ShaderFilter;
@@ -213,7 +213,7 @@ class StoryMenuState extends MusicBeatSubstate
 		FlxTween.tween(overlay, {alpha: .4}, 4, {ease: FlxEase.expoOut});
 		
 		#if android
-		addVirtualPad(NONE, A_B);
+		addVirtualPad(NONE, A);
 		addPadCamera();
 		#end
 		
@@ -239,12 +239,9 @@ class StoryMenuState extends MusicBeatSubstate
 	override function update(elapsed:Float)
 	{
 		tottalTimer += elapsed;
-		if (controls.ACCEPT && quieto)
+		if (controls.ACCEPT #if android || _virtualpad.buttonA.justPressed #end && quieto)
 		{
 			selectWeek();
-		}
-		else if(controls.ACCEPT && inCutscene){
-			finishVideo();
 		}
 
 		charsShader.update(elapsed);
@@ -256,11 +253,11 @@ class StoryMenuState extends MusicBeatSubstate
 		overlay.scale.set(1/FlxG.camera.zoom, 1/FlxG.camera.zoom);
 		flicker.scale.set(1/FlxG.camera.zoom, 1/FlxG.camera.zoom);
 
-		if (controls.BACK && quieto)
+		if (controls.BACK #if android || (FlxG.android.justReleased.BACK && quieto) #end)
 		{
 			PlayState.isStoryMode = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
-			FlxG.state.closeSubState();
+	                FlxG.state.closeSubState();
 		}
 
 		MainMenuState.instance.WEHOVERING = false;
@@ -419,7 +416,8 @@ class StoryMenuState extends MusicBeatSubstate
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
 				remove(bg);
-				quieto = true;
+				new FlxTimer().start(0.00001, function(tmr:FlxTimer){ quieto = true; });
+				
 				MainMenuState.instance.lerpCamZoom = true;
 			});
 		FlxTween.tween(FlxG.sound.music, {volume: 1}, 1, {ease: FlxEase.circIn});
