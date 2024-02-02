@@ -20,7 +20,7 @@ class Storage
 		{
 			for (file in Assets.list().filter(folder -> folder.startsWith('assets/$dir')))
 			{
-				if (Path.extension(file) == 'lua' || (dir == 'custom_events' && Path.extension(file) == 'txt'))
+				if (Path.extension(file) == 'lua')
 				{
 					// Ment for FNF's libraries system...
 					final shit:String = file.replace(file.substring(0, file.indexOf('/', 0) + 1), '');
