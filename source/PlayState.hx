@@ -4448,19 +4448,12 @@ class PlayState extends MusicBeatState
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'stages/' + curStage + '.lua';
-		if (FileSystem.exists(Paths.modFolders(luaFile)))
-		{
-			luaFile = Paths.modFolders(luaFile);
-			doPush = true;
-		}
-		else
-		{
-			luaFile = Paths.getPreloadPath(luaFile);
+			
+                        luaFile = Paths.getPreloadPath(luaFile);
 			if (FileSystem.exists(luaFile))
 			{
 				doPush = true;
 			}
-		}
 
 		if (doPush)
 			luaArray.push(new FunkinLua(luaFile));
@@ -4933,25 +4926,6 @@ class PlayState extends MusicBeatState
 
 		generateSong(SONG.song);
 		modManager = new ModManager(this);
-
-		#if LUA_ALLOWED
-		for (notetype in noteTypeMap.keys())
-		{
-			var luaToLoad:String = Paths.modFolders('custom_notetypes/' + notetype + '.lua');
-			if (FileSystem.exists(luaToLoad))
-			{
-				luaArray.push(new FunkinLua(luaToLoad));
-			}
-		}
-		for (event in eventPushedMap.keys())
-		{
-			var luaToLoad:String = Paths.modFolders('custom_events/' + event + '.lua');
-			if (FileSystem.exists(luaToLoad))
-			{
-				luaArray.push(new FunkinLua(luaToLoad));
-			}
-		}
-		#end
 		
 		noteTypeMap.clear();
 		noteTypeMap = null;
@@ -5744,19 +5718,12 @@ class PlayState extends MusicBeatState
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
-		if (FileSystem.exists(Paths.modFolders(luaFile)))
-		{
-			luaFile = Paths.modFolders(luaFile);
-			doPush = true;
-		}
-		else
-		{
 			luaFile = Paths.getPreloadPath(luaFile);
 			if (FileSystem.exists(luaFile))
 			{
 				doPush = true;
 			}
-		}
+		
 
 		if (doPush)
 			luaArray.push(new FunkinLua(luaFile));
@@ -6113,19 +6080,13 @@ class PlayState extends MusicBeatState
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'characters/' + name + '.lua';
-		if (FileSystem.exists(Paths.modFolders(luaFile)))
-		{
-			luaFile = Paths.modFolders(luaFile);
-			doPush = true;
-		}
-		else
-		{
+		 
 			luaFile = Paths.getPreloadPath(luaFile);
 			if (FileSystem.exists(luaFile))
 			{
 				doPush = true;
 			}
-		}
+		
 
 		if (doPush)
 		{
