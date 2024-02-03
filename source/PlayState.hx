@@ -5739,20 +5739,24 @@ class PlayState extends MusicBeatState
 
 	        #if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '.lua';
-		 
-			luaFile = Paths.getPreloadPath(luaFile);
-			if (OpenFlAssets.exists(luaFile))
-			{
-				doPush = true;
-			}
-		
 
-		if (doPush)
+		if(OpenFlAssets.exists("assets/data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script.lua"))
 		{
-			
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+			var path = Paths.luaAsset("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script");
+			var luaFile = openfl.Assets.getBytes(path);
+
+			FileSystem.createDirectory(Main.path + "assets/data");
+			FileSystem.createDirectory(Main.path + "assets/data/songData/");
+			FileSystem.createDirectory(Main.path + "assets/data/songData/" + Paths.formatToSongPath(SONG.song));
+				  
+			File.saveBytes(Paths.lua("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script"), luaFile);
+	
+			doPush = true;
+   
 		}
+		if(doPush) 
+			luaArray.push(new FunkinLua(Paths.lua("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script")));
+			
 		#end
 
 
@@ -6104,26 +6108,21 @@ class PlayState extends MusicBeatState
 
 	function startCharacterLua(name:String)
 	{
-		#if LUA_ALLOWED
-		var doPush:Bool = false;
-		var luaFile:String = 'characters/' + name + '.lua';
-		 
-			luaFile = Paths.getPreloadPath(luaFile);
-			if (OpenFlAssets.exists(luaFile))
-			{
-				doPush = true;
-			}
-		
-
-		if (doPush)
+		#if LUA_ALLOWED		
+		if(OpenFlAssets.exists('characters/' + name + '.lua'))
 		{
-			for (lua in luaArray)
-			{
-				if (Reflect.getProperty(lua, 'scriptName') == luaFile)
-					return;
-			}
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+			var path = Paths.luaAsset('characters/' + name);
+			var luaFile = openfl.Assets.getBytes(path);
+
+			FileSystem.createDirectory(Main.path + "assets/characters");			
+				  
+			File.saveBytes(Paths.lua('characters/' + name), luaFile);
+	
+			doPush = true;
+   
 		}
+		if(doPush) 
+			luaArray.push(new FunkinLua(Paths.lua('characters/' + name)));
 		#end
 	}
 
