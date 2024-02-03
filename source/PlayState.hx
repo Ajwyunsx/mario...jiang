@@ -4445,6 +4445,21 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
+		#if LUA_ALLOWED
+		var doPush:Bool = false;
+		var luaFile:String = 'stages/' + curStage + '.lua';
+			
+                        luaFile = Paths.getPreloadPath(luaFile);
+			if (OpenFlAssets.exists(luaFile))
+			{
+				doPush = true;
+			}
+
+		if (doPush)
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+		#end
+
+
 		var gfVersion:String = SONG.player3;
 		if (gfVersion == null || gfVersion.length < 1)
 		{
@@ -4917,8 +4932,8 @@ class PlayState extends MusicBeatState
 		eventPushedMap.clear();
 		eventPushedMap = null;
 
-               /*
                 #if LUA_ALLOWED
+                /*
 		for (notetype in noteTypeMap.keys())
 		{
 			var luaToLoad:String = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
@@ -4926,7 +4941,8 @@ class PlayState extends MusicBeatState
 			{
 				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
 			}
-		}
+		}*/
+		if (eventPushedMap != null)
 		for (event in eventPushedMap.keys())
 		{
 			var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
@@ -4935,7 +4951,7 @@ class PlayState extends MusicBeatState
 				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
 			}
 		}
-		#end */
+		#end
 
                 // After all characters being loaded, it makes then invisible 0.01s later so that the player won't freeze when you change characters
 		// add(strumLine);
@@ -5720,28 +5736,23 @@ class PlayState extends MusicBeatState
 		startingSong = true;
 		updateTime = true;
 
-	        /*
-                #if LUA_ALLOWED
+	        #if LUA_ALLOWED
 		var doPush:Bool = false;
+		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '.lua';
+		 
+			luaFile = Paths.getPreloadPath(luaFile);
+			if (OpenFlAssets.exists(luaFile))
+			{
+				doPush = true;
+			}
+		
 
-		if(OpenFlAssets.exists("assets/data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script.lua"))
+		if (doPush)
 		{
-			var path = Paths.luaAsset("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script");
-			var luaFile = openfl.Assets.getBytes(path);
-
-			FileSystem.createDirectory(Main.path + "assets/data");
-			FileSystem.createDirectory(Main.path + "assets/data/songData/");
-			FileSystem.createDirectory(Main.path + "assets/data/songData/" + Paths.formatToSongPath(SONG.song));
-				  
-			File.saveBytes(Paths.lua("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script"), luaFile);
-	
-			doPush = true;
-   
-		}
-		if(doPush) 
-			luaArray.push(new FunkinLua(Paths.lua("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script")));
 			
-		#end */
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+		}
+		#end
 
 
 		var daSong:String = Paths.formatToSongPath(curSong);
@@ -6092,7 +6103,6 @@ class PlayState extends MusicBeatState
 
 	function startCharacterLua(name:String)
 	{
-		/*
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'characters/' + name + '.lua';
@@ -6113,7 +6123,7 @@ class PlayState extends MusicBeatState
 			}
 			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
 		}
-		#end */
+		#end
 	}
 
 	function startCharacterPos(char:Character, ?gfCheck:Bool = false)
