@@ -64,7 +64,7 @@ class FunkinLua
 			return;
 		}
 		} catch(e:Dynamic) {
-                luaTrace('Error loading script: "$script"\n' + e, true, false, FlxColor.RED);
+                luaTrace('Error loading script: "$script"\n' + e);
                 return;
             }
 		scriptName = script;
