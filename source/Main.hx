@@ -38,7 +38,7 @@ class Main extends Sprite {
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 
-	public static var path:String = System.applicationStorageDirectory;
+	public static var path:String = lime.system.System.applicationStorageDirectory;
 	public static var fpsVar:FPS;
 
 	public static var skipNextDump:Bool = false;
