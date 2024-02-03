@@ -188,7 +188,7 @@ class Paths
 	}
 	inline static public function lua(key:String, ?library:String)
 	{
-		return getPath('$key.lua', TEXT, library);
+		return Main.path + getPath('$key.lua', TEXT, library);
 	}
 
 	static public function video(key:String)
