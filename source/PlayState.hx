@@ -4446,6 +4446,7 @@ class PlayState extends MusicBeatState
 		#end
 
 		#if LUA_ALLOWED
+		/*
 		var doPush:Bool = false;
 		var luaFile:String = 'stages/' + curStage + '.lua';
 			
@@ -4456,7 +4457,7 @@ class PlayState extends MusicBeatState
 			}
 
 		if (doPush)
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));*/
 		#end
 
 
