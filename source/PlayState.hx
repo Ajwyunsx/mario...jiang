@@ -6108,7 +6108,7 @@ class PlayState extends MusicBeatState
 	}
 
 	function startCharacterLua(name:String)
-	{/*
+	{
 		#if LUA_ALLOWED		
 		var doPush:Bool = false;
 		if(OpenFlAssets.exists("assets/characters/" + name + ".lua"))
@@ -6126,7 +6126,6 @@ class PlayState extends MusicBeatState
 		if(doPush) 
 			luaArray.push(new FunkinLua(Paths.lua('characters/' + name)));
 		#end
-		*/
 	}
 
 	function startCharacterPos(char:Character, ?gfCheck:Bool = false)
