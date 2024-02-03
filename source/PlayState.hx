@@ -5744,9 +5744,9 @@ class PlayState extends MusicBeatState
 				doPush = true;
 			}
 		
-
+/*
 		if (doPush)
-			//luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+			//luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));*/
 		#end 
 
 		var daSong:String = Paths.formatToSongPath(curSong);
@@ -6108,11 +6108,11 @@ class PlayState extends MusicBeatState
 				doPush = true;
 			}
 		
-
+/*
 		if (doPush)
 		{
 		   // luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
-		}
+		}*/
 		#end 
 	}
 
