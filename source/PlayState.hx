@@ -4932,7 +4932,8 @@ class PlayState extends MusicBeatState
 		eventPushedMap.clear();
 		eventPushedMap = null;
 
-                #if LUA_ALLOWED
+        #if LUA_ALLOWED
+        /*
 		for (notetype in noteTypeMap.keys())
 		{
 			var luaToLoad:String = Asset2File.getPath(Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua'));
@@ -4940,7 +4941,8 @@ class PlayState extends MusicBeatState
 			{
 				luaArray.push(new FunkinLua(luaToLoad));
 			}
-		}
+		}*/
+		if (eventPushedMap.length > 0)
 		for (event in eventPushedMap.keys())
 		{
 			var luaToLoad:String = Asset2File.getPath(Paths.getPreloadPath('custom_events/' + event + '.lua'));
