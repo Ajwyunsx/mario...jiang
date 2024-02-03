@@ -31,7 +31,7 @@ class Storage
 		#end
 		
 		#if LUA_ALLOWED
-		
+		/*
 		for (file in Assets.list().filter(folder -> folder.startsWith('assets/data')))
 		{
 			if (Path.extension(file) == 'lua')
@@ -57,7 +57,7 @@ class Storage
 				Storage.copyFile(Assets.libraryPaths.exists(library) ? '$library:$file' : file, file);
 			}
 		}
-		
+		*/
 		#end
 
 		System.gc();
