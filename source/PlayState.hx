@@ -4945,10 +4945,10 @@ class PlayState extends MusicBeatState
 		if (eventPushedMap != null)
 		for (event in eventPushedMap.keys())
 		{
-			var luaToLoad:String = Asset2File.getPath(Paths.getPreloadPath('custom_events/' + event + '.lua'));
+			var luaToLoad:String = Paths.getPreloadPath('custom_events/' + event + '.lua');
 			if (OpenFlAssets.exists(luaToLoad))
 			{
-				luaArray.push(new FunkinLua(luaToLoad));
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
 			}
 		}
 		#end
