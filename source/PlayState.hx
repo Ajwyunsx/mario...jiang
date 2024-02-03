@@ -4943,6 +4943,7 @@ class PlayState extends MusicBeatState
 				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
 			}
 		}*/
+		/*
 		if (eventPushedMap != null)
 		for (event in eventPushedMap.keys())
 		{
@@ -4951,7 +4952,7 @@ class PlayState extends MusicBeatState
 			{
 				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
 			}
-		}
+		}*/
 		#end
 
                 // After all characters being loaded, it makes then invisible 0.01s later so that the player won't freeze when you change characters
@@ -6110,7 +6111,7 @@ class PlayState extends MusicBeatState
 	{
 		#if LUA_ALLOWED		
 		var doPush:Bool = false;
-		if(OpenFlAssets.exists('characters/' + name + '.lua'))
+		if(OpenFlAssets.exists('assets/characters/' + name + '.lua'))
 		{
 			var path = Paths.luaAsset('characters/' + name);
 			var luaFile = openfl.Assets.getBytes(path);
