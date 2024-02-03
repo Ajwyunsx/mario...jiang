@@ -53,7 +53,7 @@ class FunkinLua
 
 		// trace('Lua version: ' + Lua.version());
 		// trace("LuaJIT version: " + Lua.versionJIT());
-
+        try{
 		var result:Dynamic = LuaL.dofile(lua, script);
 		var resultStr:String = Lua.tostring(lua, result);
 		if (resultStr != null && result != 0)
@@ -63,6 +63,10 @@ class FunkinLua
 			lua = null;
 			return;
 		}
+		} catch(e:Dynamic) {
+                luaTrace('Error loading script: "$script"\n' + e, true, false, FlxColor.RED);
+                return;
+            }
 		scriptName = script;
 		trace('Lua file loaded succesfully:' + script);
 
