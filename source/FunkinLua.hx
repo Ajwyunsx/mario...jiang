@@ -6,6 +6,7 @@ import llua.State;
 #end
 import Controls;
 import Type.ValueType;
+import openfl.utils.Assets;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -53,7 +54,7 @@ class FunkinLua
 
 		// trace('Lua version: ' + Lua.version());
 		// trace("LuaJIT version: " + Lua.versionJIT());
-        try{
+
 		var result:Dynamic = LuaL.dofile(lua, script);
 		var resultStr:String = Lua.tostring(lua, result);
 		if (resultStr != null && result != 0)
@@ -63,10 +64,6 @@ class FunkinLua
 			lua = null;
 			return;
 		}
-		} catch(e:Dynamic) {
-                luaTrace('Error loading script: "$script"\n' + e);
-                return;
-            }
 		scriptName = script;
 		trace('Lua file loaded succesfully:' + script);
 
@@ -1081,8 +1078,7 @@ class FunkinLua
 		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String)
 		{
 			#if VIDEOS_ALLOWED
-			
-			if (FileSystem.exists(Paths.video(videoFile)))
+			if (Assets.exists(Paths.video(videoFile)))
 			{
 				lePlayState.startVideo(videoFile);
 			}
