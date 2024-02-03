@@ -15,6 +15,24 @@ class Storage
 {
 	public static function copyNecessaryFiles():Void
 	{
+		#if LUA_ALLOWED
+		for (dir in ['characters', 'data', 'custom_events'])
+		{
+			for (file in Assets.list().filter(folder -> folder.startsWith('assets/$dir')))
+			{
+				if (Path.extension(file) == 'lua' || (dir == 'custom_events' && Path.extension(file) == 'txt'))
+				{
+					// Ment for FNF's libraries system...
+					final shit:String = file.replace(file.substring(0, file.indexOf('/', 0) + 2), '');
+					final library:String = shit.replace(shit.substring(shit.indexOf('/', 0), shit.length), '');
+
+					@:privateAccess
+					Storage.copyFile(Assets.libraryPaths.exists(library) ? '$library:$file' : file, file);
+				}
+			}
+		}
+		#end
+
 		#if VIDEOS_ALLOWED
 		for (file in Assets.list().filter(folder -> folder.startsWith('assets/videos')))
 		{
@@ -28,36 +46,6 @@ class Storage
 				Storage.copyFile(Assets.libraryPaths.exists(library) ? '$library:$file' : file, file);
 			}
 		}
-		#end
-		
-		#if LUA_ALLOWED
-		/*
-		for (file in Assets.list().filter(folder -> folder.startsWith('assets/data')))
-		{
-			if (Path.extension(file) == 'lua')
-			{
-				// Ment for FNF's libraries system...
-				final shit:String = file.replace(file.substring(0, file.indexOf('/', 0) + 2), '');
-				final library:String = shit.replace(shit.substring(shit.indexOf('/', 0), shit.length), '');
-
-				@:privateAccess
-				Storage.copyFile(Assets.libraryPaths.exists(library) ? '$library:$file' : file, file);
-			}
-		}
-		
-		for (file in Assets.list().filter(folder -> folder.startsWith('assets/characters')))
-		{
-			if (Path.extension(file) == 'lua')
-			{
-				// Ment for FNF's libraries system...
-				final shit:String = file.replace(file.substring(0, file.indexOf('/', 0) + 1), '');
-				final library:String = shit.replace(shit.substring(shit.indexOf('/', 0), shit.length), '');
-
-				@:privateAccess
-				Storage.copyFile(Assets.libraryPaths.exists(library) ? '$library:$file' : file, file);
-			}
-		}
-		*/
 		#end
 
 		System.gc();
