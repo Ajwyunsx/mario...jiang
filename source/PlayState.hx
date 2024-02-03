@@ -6096,22 +6096,27 @@ class PlayState extends MusicBeatState
 
 	function startCharacterLua(name:String)
 	{
-		
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'characters/' + name + '.lua';
 		 
-			luaFile = Paths.getPreloadPath(luaFile);
+			luaFile = Asset2File.getPath(Paths.getPreloadPath(luaFile));
 			if (OpenFlAssets.exists(luaFile))
 			{
 				doPush = true;
 			}
 		
+
 		if (doPush)
 		{
-		    luaArray.push(new FunkinLua(OpenFlAssets.getPath(luaFile)));
+			for (lua in luaArray)
+			{
+				if (Reflect.getProperty(lua, 'scriptName') == luaFile)
+					return;
+			}
+			luaArray.push(new FunkinLua(luaFile));
 		}
-		#end 
+		#end
 	}
 
 	function startCharacterPos(char:Character, ?gfCheck:Bool = false)
