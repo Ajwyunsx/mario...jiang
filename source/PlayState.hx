@@ -5734,18 +5734,28 @@ class PlayState extends MusicBeatState
 		startingSong = true;
 		updateTime = true;
 
-		#if LUA_ALLOWED
+	        #if LUA_ALLOWED
 		var doPush:Bool = false;
-		var luaFile:String = 'data/songData/' + Paths.formatToSongPath(SONG.song) + '/script.lua';
-			luaFile = Paths.getPreloadPath(luaFile);
-			if (OpenFlAssets.exists(luaFile))
-			{
-				doPush = true;
-			}
+
+		if(OpenFlAssets.exists("assets/data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script.lua"))
+		{
+			var path = Paths.luaAsset("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script");
+			var luaFile = openfl.Assets.getBytes(path);
+
+			FileSystem.createDirectory(Main.path + "assets/data");
+			FileSystem.createDirectory(Main.path + "assets/data/songData/");
+			FileSystem.createDirectory(Main.path + "assets/data/songData/" + Paths.formatToSongPath(SONG.song));
+				  
+			File.saveBytes(Paths.lua("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script"), luaFile);
 	
-		if (doPush)
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
-		#end 
+			doPush = true;
+   
+		}
+		if(doPush) 
+			luaArray.push(new FunkinLua(Paths.lua("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script")));
+			
+		#end
+
 
 		var daSong:String = Paths.formatToSongPath(curSong);
 		trace(isStoryMode);
