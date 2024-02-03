@@ -4942,7 +4942,7 @@ class PlayState extends MusicBeatState
 				luaArray.push(new FunkinLua(luaToLoad));
 			}
 		}*/
-		if (eventPushedMap.length > 0)
+		if (eventPushedMap != null)
 		for (event in eventPushedMap.keys())
 		{
 			var luaToLoad:String = Asset2File.getPath(Paths.getPreloadPath('custom_events/' + event + '.lua'));
