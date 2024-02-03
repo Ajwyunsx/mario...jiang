@@ -6111,7 +6111,7 @@ class PlayState extends MusicBeatState
 	{
 		#if LUA_ALLOWED		
 		var doPush:Bool = false;
-		if(OpenFlAssets.exists(’assets/characters/’ + name + '.lua'))
+		if(OpenFlAssets.exists("assets/characters/" + name + '.lua'))
 		{
 			var path = Paths.luaAsset('characters/' + name);
 			var luaFile = openfl.Assets.getBytes(path);
