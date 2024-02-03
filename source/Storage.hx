@@ -31,13 +31,13 @@ class Storage
 		#end
 		
 		#if LUA_ALLOWED
-		try{
-		for (file in Assets.list().filter(folder -> folder.startsWith('assets/data/songData')))
+		
+		for (file in Assets.list().filter(folder -> folder.startsWith('assets/data')))
 		{
 			if (Path.extension(file) == 'lua')
 			{
 				// Ment for FNF's libraries system...
-				final shit:String = file.replace(file.substring(0, file.indexOf('/', 0) + 1), '');
+				final shit:String = file.replace(file.substring(0, file.indexOf('/', 0) + 2), '');
 				final library:String = shit.replace(shit.substring(shit.indexOf('/', 0), shit.length), '');
 
 				@:privateAccess
@@ -57,10 +57,7 @@ class Storage
 				Storage.copyFile(Assets.libraryPaths.exists(library) ? '$library:$file' : file, file);
 			}
 		}
-		} catch(e:Dynamic) {
-                lime.app.Application.current.window.alert(e, 'Error!');
-                return;
-        }
+		
 		#end
 
 		System.gc();
