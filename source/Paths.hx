@@ -191,6 +191,11 @@ class Paths
 		return Main.path + getPath('$key.lua', TEXT, library);
 	}
 
+	inline static public function luaAsset(key:String, ?library:String)
+        {
+		return getPath('$key.lua', TEXT, library);
+        }
+	
 	static public function video(key:String)
 	{
 		return 'assets/videos/$key.$VIDEO_EXT';
