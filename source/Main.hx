@@ -101,8 +101,7 @@ class Main extends Sprite {
                 Lib.application.window.onClose.add(PlayState.onWinClose);
 		
 		#if android
-			Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir(null)));
-	
+	        Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
 		#end
 		
 		#if mobile
