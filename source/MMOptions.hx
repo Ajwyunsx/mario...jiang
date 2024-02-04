@@ -1109,7 +1109,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		{
 			if (controls.UI_LEFT_P || controls.UI_RIGHT_P)
 			{
-				var add2:Int = controls.UI_LEFT ? -0.1 : 0.1;
+				var add2:Float = controls.UI_LEFT ? -0.1 : 0.1;
 				var add:Int = controls.UI_LEFT ? -1 : 1;
 				if (holdTime > 0.5 || controls.UI_LEFT || controls.UI_RIGHT)
 					switch (options[curSelected])
