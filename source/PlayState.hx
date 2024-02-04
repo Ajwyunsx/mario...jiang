@@ -5738,30 +5738,6 @@ class PlayState extends MusicBeatState
 		startingSong = true;
 		updateTime = true;
 
-	    #if LUA_ALLOWED
-		var doPush:Bool = false;
-
-		if(OpenFlAssets.exists("assets/data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script.lua"))
-		{
-			var path = "assets/data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script.lua";
-			var luaFile = openfl.Assets.getBytes(path);
-			
-            FileSystem.createDirectory(Sys.getCwd());
-			FileSystem.createDirectory(Sys.getCwd() + "assets/data");
-			FileSystem.createDirectory(Sys.getCwd() + "assets/data/songData/");
-			FileSystem.createDirectory(Sys.getCwd() + "assets/data/songData/" + Paths.formatToSongPath(SONG.song));
-				  
-			File.saveBytes(Sys.getCwd() + "assets/data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script", luaFile);
-	
-			doPush = true;
-   
-		}
-		if(doPush) 
-			luaArray.push(new FunkinLua(Sys.getCwd() + "assets/data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script.lua"));
-			
-		#end
-
-
 		var daSong:String = Paths.formatToSongPath(curSong);
 		trace(isStoryMode);
 		trace(seenCutscene);
@@ -6110,20 +6086,7 @@ class PlayState extends MusicBeatState
 
 	function startCharacterLua(name:String)
 	{
-	        #if LUA_ALLOWED
-		var doPush:Bool = false;
-		var luaFile:String = 'characters/' + name + '.lua';
-			luaFile = Paths.getPreloadPath(luaFile);
-			if (FileSystem.exists(luaFile))
-			{
-				doPush = true;
-			}
-
-		if (doPush)
-		{
-			luaArray.push(new FunkinLua(luaFile));
-		}
-		#end
+	        //该死的lua
 	}
 
 	function startCharacterPos(char:Character, ?gfCheck:Bool = false)
