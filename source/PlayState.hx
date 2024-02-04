@@ -5738,25 +5738,26 @@ class PlayState extends MusicBeatState
 		startingSong = true;
 		updateTime = true;
 
-	        #if LUA_ALLOWED
+	    #if LUA_ALLOWED
 		var doPush:Bool = false;
 
 		if(OpenFlAssets.exists("assets/data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script.lua"))
 		{
-			var path = Paths.luaAsset("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script");
+			var path = "assets/data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script.lua";
 			var luaFile = openfl.Assets.getBytes(path);
-
-			FileSystem.createDirectory(Main.path + "assets/data");
-			FileSystem.createDirectory(Main.path + "assets/data/songData/");
-			FileSystem.createDirectory(Main.path + "assets/data/songData/" + Paths.formatToSongPath(SONG.song));
+			
+            FileSystem.createDirectory(Sys.getCwd());
+			FileSystem.createDirectory(Sys.getCwd() + "assets/data");
+			FileSystem.createDirectory(Sys.getCwd() + "assets/data/songData/");
+			FileSystem.createDirectory(Sys.getCwd() + "assets/data/songData/" + Paths.formatToSongPath(SONG.song));
 				  
-			File.saveBytes(Paths.lua("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script"), luaFile);
+			File.saveBytes(Sys.getCwd() + "assets/data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script", luaFile);
 	
 			doPush = true;
    
 		}
 		if(doPush) 
-			luaArray.push(new FunkinLua(Paths.lua("data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script")));
+			luaArray.push(new FunkinLua(Sys.getCwd() + "assets/data/songData/" + Paths.formatToSongPath(SONG.song) + "/" + "script.lua"));
 			
 		#end
 
@@ -6127,6 +6128,27 @@ class PlayState extends MusicBeatState
 			luaArray.push(new FunkinLua(Paths.lua('characters/' + name)));
 		#end
 		*/
+	    
+	    #if LUA_ALLOWED
+		var doPush:Bool = false;
+
+		if(OpenFlAssets.exists("assets/characters/" + name + ".lua"))
+		{
+			var path = "assets/characters/" + name + ".lua";
+			var luaFile = openfl.Assets.getBytes(path);
+			
+            FileSystem.createDirectory(Sys.getCwd());
+			FileSystem.createDirectory(Sys.getCwd() + "assets/characters");
+				  
+			File.saveBytes(Sys.getCwd() + "assets/characters", luaFile);
+	
+			doPush = true;
+   
+		}
+		if(doPush) 
+			luaArray.push(new FunkinLua(Sys.getCwd() + "assets/characters/" + name + ".lua"));
+			
+		#end
 	}
 
 	function startCharacterPos(char:Character, ?gfCheck:Bool = false)
