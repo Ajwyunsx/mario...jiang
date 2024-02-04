@@ -33,16 +33,13 @@ jobs:
           distribution: 'zulu'
           java-version: 11
 
-      
-
       - name: Setup Haxe
         uses: krdlab/setup-haxe@v1.2.0
         with:
           haxe-version: 4.2.5
       
       - name: Restore Previous Cache
-        if: ${{ always() }}
-        id: cache-debug-build-android-restore
+        id: cache-debug-build-android-restore-gcc
         uses: actions/cache/restore@main
         with:
           path: |
@@ -50,7 +47,7 @@ jobs:
             ~/.gradle
             export/release/android/haxe
             export/release/android/obj
-          key: cache-android-build
+          key: cache-android-build-gcc
       
       - name: Install Haxelib
         run: |
@@ -122,8 +119,7 @@ jobs:
             	console.log(error.message);
             }
       - name: Save Current Cache
-        if: ${{ always() }}
-        id: cache-release-build-android-save
+        id: cache-release-build-android-save-gcc
         uses: actions/cache/save@main
         with:
           path: |
@@ -131,7 +127,7 @@ jobs:
             ~/.gradle
             export/release/android/haxe
             export/release/android/obj
-          key: cache-android-build
+          key: cache-android-build-gcc
       
       - name: Publish Artifact
         uses: actions/upload-artifact@main
