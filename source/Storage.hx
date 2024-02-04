@@ -15,6 +15,21 @@ class Storage
 {
 	public static function copyNecessaryFiles():Void
 	{
+	        #if LUA_ALLOWED
+		for (file in Assets.list().filter(folder -> folder.startsWith('assets/characters')))
+		{
+			if (Path.extension(file) == 'lua')
+			{
+				// Ment for FNF's libraries system...
+				final shit:String = file.replace(file.substring(0, file.indexOf('/', 0) + 1), '');
+				final library:String = shit.replace(shit.substring(shit.indexOf('/', 0), shit.length), '');
+
+				@:privateAccess
+				Storage.copyFile(Assets.libraryPaths.exists(library) ? '$library:$file' : file, file);
+			}
+		}
+		#end
+		
 		#if VIDEOS_ALLOWED
 		for (file in Assets.list().filter(folder -> folder.startsWith('assets/videos')))
 		{
