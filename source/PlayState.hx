@@ -6121,11 +6121,6 @@ class PlayState extends MusicBeatState
 
 		if (doPush)
 		{
-			for (lua in luaArray)
-			{
-				if (Reflect.getProperty(lua, 'scriptName') == luaFile)
-					return;
-			}
 			luaArray.push(new FunkinLua(luaFile));
 		}
 		#end
