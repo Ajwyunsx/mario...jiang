@@ -50,7 +50,7 @@ jobs:
             ~/.gradle
             export/release/android/haxe
             export/release/android/obj
-          key: cache-android-build-ache-android-build
+          key: cache-android-build
       
       - name: Install Haxelib
         run: |
@@ -131,7 +131,7 @@ jobs:
             ~/.gradle
             export/release/android/haxe
             export/release/android/obj
-          key: cache-android-build-ache-android-build
+          key: cache-android-build
       
       - name: Publish Artifact
         uses: actions/upload-artifact@main
