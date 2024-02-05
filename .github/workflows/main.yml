@@ -83,7 +83,6 @@ jobs:
 
       
       - name: Clear Previous Cache
-        if: ${{ always() }}
         uses: actions/github-script@main
         with:
           script: |
@@ -109,7 +108,6 @@ jobs:
             	console.log(error.message);
             }
       - name: Save Current Cache
-        if: ${{ always() }}
         id: cache-release-build-android-save
         uses: actions/cache/save@main
         with:
