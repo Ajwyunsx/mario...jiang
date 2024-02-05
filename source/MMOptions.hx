@@ -1324,6 +1324,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 				{
 					case 'Framerate':
 						daText = '' + ClientPrefs.framerate;
+					case 'Hitbox Alpha':
+						daText = '' + ClientPrefs.hitboxalpha;
 					case 'Note Delay':
 						daText = ClientPrefs.noteOffset + 'ms';
 				}
