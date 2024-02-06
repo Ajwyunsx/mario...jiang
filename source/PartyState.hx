@@ -3,6 +3,7 @@ package;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
+import extension.eightsines.EsOrientation;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxBackdrop;
@@ -113,6 +114,9 @@ class PartyState extends MusicBeatState
 		FlxG.sound.music.stop();
 		FlxG.sound.soundTrayEnabled = false;
 
+		EsOrientation.setScreenOrientation(EsOrientation.ORIENTATION_PORTRAIT);
+		//先试一下这个
+		
 		bgColor = 0xFF000000;
 
 		topCam = new FlxCamera(0, 0, 256, 192, 2);
