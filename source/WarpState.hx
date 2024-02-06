@@ -9,6 +9,7 @@ import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
+import extension.eightsines.EsOrientation;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.effects.FlxFlicker;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -96,6 +97,7 @@ class WarpState extends MusicBeatState
 		DiscordClient.changePresence("In the Overworld", null);
 		Lib.application.window.title = "Friday Night Funkin': Mario's Madness";
 		#end
+                EsOrientation.setScreenOrientation(EsOrientation.ORIENTATION_LANDSCAPE);
 		FlxG.mouse.visible = false;
 		FlxG.mouse.load(TitleState.mouse.pixels, 2);
 
