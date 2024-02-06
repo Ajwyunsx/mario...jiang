@@ -59,6 +59,7 @@ import lime.utils.Assets;
 import modchart.*;
 import openfl.Lib;
 import openfl.display.BlendMode;
+import extension.eightsines.EsOrientation;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 import openfl.utils.Assets as OpenFlAssets;
@@ -4134,7 +4135,8 @@ class PlayState extends MusicBeatState
 				//hasDownScroll = true;
 				noCount = true;
 				BF_CAM_EXTEND = 0;
-				CoolUtil.precacheSound('lightOn');
+				EsOrientation.setScreenOrientation(EsOrientation.ORIENTATION_PORTRAIT);
+                                CoolUtil.precacheSound('lightOn');
                                 gfGroup.visible = false;
 				boyfriendGroup.scrollFactor.set(0.1, 0.1);
 
