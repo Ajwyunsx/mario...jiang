@@ -861,7 +861,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 {
 	private static var curSelected:Int = 0;
 	static var unselectableOptions:Array<String> = ['GRAPHICS', 'GAMEPLAY'];
-	static var noCheckbox:Array<String> = ['Framerate', 'Note Delay'];
+	static var noCheckbox:Array<String> = ['Framerate', 'Hitbox Alpha', 'Note Delay'];
 
 	static var options:Array<String> = [
 		'GRAPHICS',
