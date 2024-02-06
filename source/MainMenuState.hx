@@ -31,6 +31,7 @@ import lime.app.Application;
 import lime.graphics.Image;
 import openfl.Lib;
 import openfl.filters.ShaderFilter;
+import extension.eightsines.EsOrientation;
 import openfl.ui.Mouse;
 import sys.FileSystem;
 import sys.io.File;
@@ -144,6 +145,7 @@ class MainMenuState extends MusicBeatState {
 			Main.fpsVar.visible = ClientPrefs.showFPS;
 		}
 		
+                EsOrientation.setScreenOrientation(EsOrientation.ORIENTATION_LANDSCAPE);
 		Lib.application.window.resizable = lime._internal.backend.native.NativeApplication.fullscreenable = true;
 
 		if(FlxG.sound.music == null){
